@@ -29,14 +29,18 @@ vmap <Leader>a/ :argdo s!^[^/]\+/*!!<CR>
 " Pipe into:argdo  sort, sort -R (random), uniq, grep, column -t
 nmap <Leader>apc :argdo %!LANG=C column -t<CR>
 nmap <Leader>apg :argdo %!LANG=C grep<Space>""<Left>
+nmap <Leader>apn :argdo %!LANG=C nl -nrz -w4<CR>
 nmap <Leader>apr :argdo %!LANG=C sort -R<CR>
 nmap <Leader>aps :argdo %!LANG=C sort -f<CR>
+nmap <Leader>apt :argdo %!LANG=C tac<CR>
 nmap <Leader>apu :argdo %!LANG=C uniq<CR>
 
 vmap <Leader>apc :argdo !LANG=C column -t<CR>
 vmap <Leader>apg :argdo !LANG=C grep<Space>""<Left>
+vmap <Leader>apn :argdo !LANG=C nl -nrz -w4<CR>
 vmap <Leader>apr :argdo !LANG=C sort -R<CR>
 vmap <Leader>aps :argdo !LANG=C sort -f<CR>
+vmap <Leader>apt :argdo !LANG=C tac<CR>
 vmap <Leader>apu :argdo !LANG=C uniq<CR>
 
 " Delete whitespace:argdo  Leading 6^, Trailing 4$, Before Tab <Tab>, Blank lines <Enter>
