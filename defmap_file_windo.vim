@@ -27,6 +27,7 @@ nmap <Leader>w/ :windo %s!^[^/]\+/*!!<CR>
 vmap <Leader>w/ :windo s!^[^/]\+/*!!<CR>
 
 " Pipe into:windo  sort, sort -R (random), uniq, grep, column -t
+nmap <Leader>wpb :windo %!LANG=C rev<CR>
 nmap <Leader>wpc :windo %!LANG=C column -t<CR>
 nmap <Leader>wpg :windo %!LANG=C grep<Space>""<Left>
 nmap <Leader>wpn :windo %!LANG=C nl -nrz -w4<CR>
@@ -38,6 +39,7 @@ nmap <Leader>wpu :windo %!LANG=C uniq<CR>
 vmap <Leader>wpc :windo !LANG=C column -t<CR>
 vmap <Leader>wpg :windo !LANG=C grep<Space>""<Left>
 vmap <Leader>wpn :windo !LANG=C nl -nrz -w4<CR>
+vmap <Leader>wpn :windo !LANG=C rev<CR>
 vmap <Leader>wpr :windo !LANG=C sort -R<CR>
 vmap <Leader>wps :windo !LANG=C sort -f<CR>
 vmap <Leader>wpt :windo !LANG=C tac<CR>

@@ -27,6 +27,7 @@ nmap <Leader>b/ :bufdo %s!^[^/]\+/*!!<CR>
 vmap <Leader>b/ :bufdo s!^[^/]\+/*!!<CR>
 
 " Pipe into:bufdo  sort, sort -R (random), uniq, grep, column -t
+nmap <Leader>bpb :bufdo %!LANG=C rev<CR>
 nmap <Leader>bpc :bufdo %!LANG=C column -t<CR>
 nmap <Leader>bpg :bufdo %!LANG=C grep<Space>""<Left>
 nmap <Leader>bpn :bufdo %!LANG=C nl -nrz -w4<CR>
@@ -35,6 +36,7 @@ nmap <Leader>bps :bufdo %!LANG=C sort -f<CR>
 nmap <Leader>bpt :bufdo %!LANG=C tac<CR>
 nmap <Leader>bpu :bufdo %!LANG=C uniq<CR>
 
+vmap <Leader>bpb :bufdo !LANG=C rev<CR>
 vmap <Leader>bpc :bufdo !LANG=C column -t<CR>
 vmap <Leader>bpg :bufdo !LANG=C grep<Space>""<Left>
 vmap <Leader>bpn :bufdo !LANG=C nl -nrz -w4<CR>

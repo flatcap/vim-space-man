@@ -27,6 +27,7 @@ nmap <Leader>/ :%s!^[^/]\+/*!!<CR>
 vmap <Leader>/ :s!^[^/]\+/*!!<CR>
 
 " Pipe into: sort, sort -R (random), uniq, grep, column -t
+nmap <Leader>pb :%!LANG=C rev<CR>
 nmap <Leader>pc :%!LANG=C column -t<CR>
 nmap <Leader>pg :%!LANG=C grep<Space>""<Left>
 nmap <Leader>pn :%!LANG=C nl -nrz -w4<CR>
@@ -35,6 +36,7 @@ nmap <Leader>ps :%!LANG=C sort -f<CR>
 nmap <Leader>pt :%!LANG=C tac<CR>
 nmap <Leader>pu :%!LANG=C uniq<CR>
 
+vmap <Leader>pb :!LANG=C rev<CR>
 vmap <Leader>pc :!LANG=C column -t<CR>
 vmap <Leader>pg :!LANG=C grep<Space>""<Left>
 vmap <Leader>pn :!LANG=C nl -nrz -w4<CR>
