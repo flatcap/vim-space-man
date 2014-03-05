@@ -23,8 +23,8 @@ nmap <Leader>a8 :argdo %s/.*//<Left>
 vmap <Leader>a8 :argdo s/.*//<Left>
 
 " Strip leading path component
-nmap <Leader>a/ :argdo %s!^[^/]\+/*!!<CR>
-vmap <Leader>a/ :argdo s!^[^/]\+/*!!<CR>
+nmap <Leader>a/ :argdo %s!^[^/]*/*!!<CR>
+vmap <Leader>a/ :argdo s!^[^/]*/*!!<CR>
 
 " Pipe into:argdo  sort, sort -R (random), uniq, grep, column -t
 nmap <Leader>apb :argdo %!LANG=C rev<CR>

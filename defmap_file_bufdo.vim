@@ -23,8 +23,8 @@ nmap <Leader>b8 :bufdo %s/.*//<Left>
 vmap <Leader>b8 :bufdo s/.*//<Left>
 
 " Strip leading path component
-nmap <Leader>b/ :bufdo %s!^[^/]\+/*!!<CR>
-vmap <Leader>b/ :bufdo s!^[^/]\+/*!!<CR>
+nmap <Leader>b/ :bufdo %s!^[^/]*/*!!<CR>
+vmap <Leader>b/ :bufdo s!^[^/]*/*!!<CR>
 
 " Pipe into:bufdo  sort, sort -R (random), uniq, grep, column -t
 nmap <Leader>bpb :bufdo %!LANG=C rev<CR>

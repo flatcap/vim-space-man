@@ -23,8 +23,8 @@ nmap <Leader>8 :%s/.*//<Left>
 vmap <Leader>8 :s/.*//<Left>
 
 " Strip leading path component
-nmap <Leader>/ :%s!^[^/]\+/*!!<CR>
-vmap <Leader>/ :s!^[^/]\+/*!!<CR>
+nmap <Leader>/ :%s!^[^/]*/*!!<CR>
+vmap <Leader>/ :s!^[^/]*/*!!<CR>
 
 " Pipe into: sort, sort -R (random), uniq, grep, column -t
 nmap <Leader>pb :%!LANG=C rev<CR>
