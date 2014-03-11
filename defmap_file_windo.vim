@@ -26,6 +26,10 @@ vmap <Leader>w8 :windo s/.*//<Left>
 nmap <Leader>w/ :windo %s!^[^/]*/*!!<CR>
 vmap <Leader>w/ :windo s!^[^/]*/*!!<CR>
 
+" Strip to first dot
+nmap <Leader>w. :windo %s/^[^\.]*\.*//<CR>
+vmap <Leader>w. :windo s/^[^\.]*\.*//<CR>
+
 " Pipe into:windo  sort, sort -R (random), uniq, grep, column -t
 nmap <Leader>wpb :windo %!LANG=C rev<CR>
 nmap <Leader>wpc :windo %!LANG=C column -t<CR>

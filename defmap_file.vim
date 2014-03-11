@@ -26,6 +26,10 @@ vmap <Leader>8 :s/.*//<Left>
 nmap <Leader>/ :%s!^[^/]*/*!!<CR>
 vmap <Leader>/ :s!^[^/]*/*!!<CR>
 
+" Strip to first dot
+nmap <Leader>. :%s/^[^\.]*\.*//<CR>
+vmap <Leader>. :s/^[^\.]*\.*//<CR>
+
 " Pipe into: sort, sort -R (random), uniq, grep, column -t
 nmap <Leader>pb :%!LANG=C rev<CR>
 nmap <Leader>pc :%!LANG=C column -t<CR>

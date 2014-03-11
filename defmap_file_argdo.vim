@@ -26,6 +26,10 @@ vmap <Leader>a8 :argdo s/.*//<Left>
 nmap <Leader>a/ :argdo %s!^[^/]*/*!!<CR>
 vmap <Leader>a/ :argdo s!^[^/]*/*!!<CR>
 
+" Strip to first dot
+nmap <Leader>a. :argdo %s/^[^\.]*\.*//<CR>
+vmap <Leader>a. :argdo s/^[^\.]*\.*//<CR>
+
 " Pipe into:argdo  sort, sort -R (random), uniq, grep, column -t
 nmap <Leader>apb :argdo %!LANG=C rev<CR>
 nmap <Leader>apc :argdo %!LANG=C column -t<CR>
