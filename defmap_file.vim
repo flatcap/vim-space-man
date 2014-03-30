@@ -1,47 +1,60 @@
-" Pipe into command
-nmap <Leader>1 :%!<Space>
-vmap <Leader>1 :!<Space>
 
-" Strip the first two characters off each line -- useful for find(1) output
-nmap <Leader>2 :%s/^..//<CR>
-vmap <Leader>2 :s/^..//<CR>
+function! s:MakeMappings(map, command)
+	let s:cmd = a:command
+	if (!empty (s:cmd))
+		let s:cmd += ' '
+	endif
 
-" End of line
-nmap <Leader>4 :%s/$//<Left>
-vmap <Leader>4 :s/$//<Left>
+	" Pipe into command
+	execute 'nmap <Leader>'.a:map.'1 :'.s:cmd.'%!<Space>'
+	execute 'vmap <Leader>'.a:map.'1 :'.s:cmd.'!<Space>'
 
-" All of selection/file
-nmap <Leader>5 :%s/
-vmap <Leader>5 :s/
+	" Strip the first two characters off each line -- useful for find(1) output
+	execute 'nmap <Leader>'.a:map.'2 :'.s:cmd.'%s/^..//<CR>'
+	execute 'vmap <Leader>'.a:map.'2 :'.s:cmd.'s/^..//<CR>'
 
-" Start of line
-nmap <Leader>6 :%s/^
-vmap <Leader>6 :s/^
+	" End of line
+	execute 'nmap <Leader>'.a:map.'4 :'.s:cmd.'%s/$//<Left>'
+	execute 'vmap <Leader>'.a:map.'4 :'.s:cmd.'s/$//<Left>'
 
-" Everything
-nmap <Leader>8 :%s/.*//<Left>
-vmap <Leader>8 :s/.*//<Left>
+	" All of selection/file
+	execute 'nmap <Leader>'.a:map.'5 :'.s:cmd.'%s/'
+	execute 'vmap <Leader>'.a:map.'5 :'.s:cmd.'s/'
 
-" Strip leading path component
-nmap <Leader>/ :%s!^[^/]*/*!!<CR>
-vmap <Leader>/ :s!^[^/]*/*!!<CR>
+	" Start of line
+	execute 'nmap <Leader>'.a:map.'6 :'.s:cmd.'%s/^'
+	execute 'vmap <Leader>'.a:map.'6 :'.s:cmd.'s/^'
 
-" Strip to first dot
-nmap <Leader>. :%s/^[^\.]*\.*//<CR>
-vmap <Leader>. :s/^[^\.]*\.*//<CR>
+	" Everything
+	execute 'nmap <Leader>'.a:map.'8 :'.s:cmd.'%s/.*//<Left>'
+	execute 'vmap <Leader>'.a:map.'8 :'.s:cmd.'s/.*//<Left>'
 
-" Pipe into: sort, sort -R (random), uniq, grep, column -t
-nmap <Leader>pg :%!LANG=C grep<Space>""<Left>
-vmap <Leader>pg :!LANG=C grep<Space>""<Left>
+	" Strip leading path component
+	execute 'nmap <Leader>'.a:map.'/ :'.s:cmd.'%s!^[^/]*/*!!<CR>'
+	execute 'vmap <Leader>'.a:map.'/ :'.s:cmd.'s!^[^/]*/*!!<CR>'
 
-" Delete whitespace: Leading 6^, Trailing 4$, Before Tab <Tab>, Blank lines <Enter>
-nmap <Leader><Space>4       :%s/\s\+$//e<CR>
-nmap <Leader><Space>6       :%s/^\s\+//e<CR>
-nmap <Leader><Space><Enter> :%g/^\s*$/de<CR>
-nmap <Leader><Space><Tab>   :%s/<Space>\+<Tab>/<Tab>/e<CR>
+	" Strip to first dot
+	execute 'nmap <Leader>'.a:map.'. :'.s:cmd.'%s/^[^\.]*\.*//<CR>'
+	execute 'vmap <Leader>'.a:map.'. :'.s:cmd.'s/^[^\.]*\.*//<CR>'
 
-vmap <Leader><Space>4       :s/\s\+$//e<CR>
-vmap <Leader><Space>6       :s/^\s\+//e<CR>
-vmap <Leader><Space><Enter> :g/^\s*$/de<CR>
-vmap <Leader><Space><Tab>   :s/<Space>\+<Tab>/<Tab>/e<CR>
+	" Pipe into:'.s:cmd.' sort, sort -R (random), uniq, grep, column -t
+	execute 'nmap <Leader>'.a:map.'pg :'.s:cmd.'%!LANG=C grep<Space>""<Left>'
+	execute 'vmap <Leader>'.a:map.'pg :'.s:cmd.'!LANG=C grep<Space>""<Left>'
+
+	" Delete whitespace:'.s:cmd.' Leading 6^, Trailing 4$, Before Tab <Tab>, Blank lines <Enter>
+	execute 'nmap <Leader>'.a:map.'<Space>4       :'.s:cmd.'%s/\s\+$//e<CR>'
+	execute 'nmap <Leader>'.a:map.'<Space>6       :'.s:cmd.'%s/^\s\+//e<CR>'
+	execute 'nmap <Leader>'.a:map.'<Space><Enter> :'.s:cmd.'%g/^\s*$/de<CR>'
+	execute 'nmap <Leader>'.a:map.'<Space><Tab>   :'.s:cmd.'%s/<Space>\+<Tab>/<Tab>/e<CR>'
+
+	execute 'vmap <Leader>'.a:map.'<Space>4       :'.s:cmd.'s/\s\+$//e<CR>'
+	execute 'vmap <Leader>'.a:map.'<Space>6       :'.s:cmd.'s/^\s\+//e<CR>'
+	execute 'vmap <Leader>'.a:map.'<Space><Enter> :'.s:cmd.'g/^\s*$/de<CR>'
+	execute 'vmap <Leader>'.a:map.'<Space><Tab>   :'.s:cmd.'s/<Space>\+<Tab>/<Tab>/e<CR>'
+endfunction
+
+call s:MakeMappings('',   '')	" bare mappings first
+call s:MakeMappings('a', 'argdo')
+call s:MakeMappings('b', 'bufdo')
+call s:MakeMappings('w', 'windo')
 
