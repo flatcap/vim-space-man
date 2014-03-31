@@ -29,14 +29,6 @@ function! s:MakeMappings(map, command)
 	execute 'nmap <Leader>'.a:map.'8 :'.s:cmd.'%s/.*//<Left>'
 	execute 'vmap <Leader>'.a:map.'8 :'.s:cmd.'s/.*//<Left>'
 
-	" Strip leading path component
-	execute 'nmap <Leader>'.a:map.'/ :'.s:cmd.'%s!^[^/]*/*!!<CR>'
-	execute 'vmap <Leader>'.a:map.'/ :'.s:cmd.'s!^[^/]*/*!!<CR>'
-
-	" Strip to first dot
-	execute 'nmap <Leader>'.a:map.'. :'.s:cmd.'%s/^[^\.]*\.*//<CR>'
-	execute 'vmap <Leader>'.a:map.'. :'.s:cmd.'s/^[^\.]*\.*//<CR>'
-
 	" Pipe into:'.s:cmd.' sort, sort -R (random), uniq, grep, column -t
 	execute 'nmap <Leader>'.a:map.'pg :'.s:cmd.'%!LANG=C grep<Space>""<Left>'
 	execute 'vmap <Leader>'.a:map.'pg :'.s:cmd.'!LANG=C grep<Space>""<Left>'
