@@ -2,7 +2,7 @@
 function! s:MakeMappings(map, command)
 	let s:cmd = a:command
 	if (!empty (s:cmd))
-		let s:cmd += ' '
+		let s:cmd .= ' '
 	endif
 
 	" Pipe into command
