@@ -22,8 +22,8 @@ function! s:MakeMappings(map, command)
 	execute 'vmap <Leader>'.a:map.'5 :'.s:cmd.'s/'
 
 	" Start of line
-	execute 'nmap <Leader>'.a:map.'6 :'.s:cmd.'%s/^'
-	execute 'vmap <Leader>'.a:map.'6 :'.s:cmd.'s/^'
+	execute 'nmap <Leader>'.a:map.'6 :'.s:cmd.'%s/^/'
+	execute 'vmap <Leader>'.a:map.'6 :'.s:cmd.'s/^/'
 
 	" Everything
 	execute 'nmap <Leader>'.a:map.'8 :'.s:cmd.'%s/.*//<Left>'
