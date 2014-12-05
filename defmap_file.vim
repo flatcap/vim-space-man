@@ -34,7 +34,7 @@ function! s:MakeMappings(map, command)
 	execute 'vmap <Leader>'.a:map.'pg :'.s:cmd.'!LANG=C grep<Space>""<Left>'
 
 	" Delete whitespace:'.s:cmd.' Leading 6^, Trailing 4$, Before Tab <Tab>, Blank lines <Enter>
-	execute 'nmap <Leader>'.a:map.'<Space>4       :'.s:cmd.'%s/\s\+$//e<CR>'
+	execute 'nmap <Leader>'.a:map.'<Space>4       :'.s:cmd.'%s/\(\s\\|\%x0d\)\+$//e<CR>'
 	execute 'nmap <Leader>'.a:map.'<Space>6       :'.s:cmd.'%s/^\s\+//e<CR>'
 	execute 'nmap <Leader>'.a:map.'<Space><Enter> :'.s:cmd.'%g/^\s*$/de<CR>'
 	execute 'nmap <Leader>'.a:map.'<Space><Tab>   :'.s:cmd.'%s/<Space>\+<Tab>/<Tab>/e<CR>'
