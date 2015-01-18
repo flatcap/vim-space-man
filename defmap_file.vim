@@ -18,8 +18,8 @@ function! s:MakeMappings(map, command)
 	execute 'vmap <Leader>'.a:map.'4 :'.s:cmd.'s/$//<Left>'
 
 	" All of selection/file
-	execute 'nmap <Leader>'.a:map.'5 :'.s:cmd.'%s/'
-	execute 'vmap <Leader>'.a:map.'5 :'.s:cmd.'s/'
+	execute 'nmap <Leader>'.a:map.'5 :'.s:cmd.'%s/\v'
+	execute 'vmap <Leader>'.a:map.'5 :'.s:cmd.'s/\v'
 
 	" Start of line
 	execute 'nmap <Leader>'.a:map.'6 :'.s:cmd.'%s/^/'
