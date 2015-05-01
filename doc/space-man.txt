@@ -1,0 +1,16 @@
+*space-man.txt*  Plugin for trimming the beginning of lines
+
+Author:  Richard Russon (flatcap) <rich@flatcap.org>
+License: GPLv3 <http://fsf.org/>
+
+This plugin is only available if 'compatible' is not set.
+
+INTRODUCTION                                        	*space-man*
+
+ABOUT                                           	*space-man-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/flatcap/vim-space-man
+
+ vim:tw=78:ts=2:sw=2:et:ft=help:norl:
