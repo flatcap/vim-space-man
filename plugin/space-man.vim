@@ -28,30 +28,30 @@ function! s:space_mappings (map, command)
 	"	g	at top of file
 	"	G	at bottom of file
 
-	let s:cmd = a:command
-	if (!empty (s:cmd))
-		let s:cmd .= ' '
+	let l:cmd = a:command
+	if (!empty (l:cmd))
+		let l:cmd .= ' '
 	endif
 
 	" delete whitespace
-	execute 'nnoremap <leader>' . a:map . '<space>4       :' . s:cmd . '%s/\(\s\\|\%x0d\)\+$//e<cr>'
-	execute 'nnoremap <leader>' . a:map . '<space>$       :' . s:cmd . '%s/\(\s\\|\%x0d\)\+$//e<cr>'
-	execute 'nnoremap <leader>' . a:map . '<space>6       :' . s:cmd . '%s/^\s\+//e<cr>'
-	execute 'nnoremap <leader>' . a:map . '<space>^       :' . s:cmd . '%s/^\s\+//e<cr>'
-	execute 'nnoremap <leader>' . a:map . '<space><tab>   :' . s:cmd . '%s/<space>\+<tab>/<tab>/e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>4       :' . l:cmd . '%s/\(\s\\|\%x0d\)\+$//e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>$       :' . l:cmd . '%s/\(\s\\|\%x0d\)\+$//e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>6       :' . l:cmd . '%s/^\s\+//e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>^       :' . l:cmd . '%s/^\s\+//e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space><tab>   :' . l:cmd . '%s/<space>\+<tab>/<tab>/e<cr>'
 
 	" delete lines
-	execute 'nnoremap <leader>' . a:map . '<space><enter> :' . s:cmd . '%g/^\s*$/de<cr>'
-	execute 'nnoremap <leader>' . a:map . '<space>g       :' . s:cmd . '%s/\%^\_s\+\n'
-	execute 'nnoremap <leader>' . a:map . '<space>G       :' . s:cmd . '%s/\n\_s\+\%$'
+	execute 'nnoremap <leader>' . a:map . '<space><enter> :' . l:cmd . '%g/^\s*$/de<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>g       :' . l:cmd . '%s/\%^\_s\+\n'
+	execute 'nnoremap <leader>' . a:map . '<space>G       :' . l:cmd . '%s/\n\_s\+\%$'
 
 	" visual delete whitespace
-	execute 'vnoremap <leader>' . a:map . '<space>4       :' . s:cmd . 's/\s\+$//e<cr>'
-	execute 'vnoremap <leader>' . a:map . '<space>$       :' . s:cmd . 's/\s\+$//e<cr>'
-	execute 'vnoremap <leader>' . a:map . '<space>6       :' . s:cmd . 's/^\s\+//e<cr>'
-	execute 'vnoremap <leader>' . a:map . '<space>^       :' . s:cmd . 's/^\s\+//e<cr>'
-	execute 'vnoremap <leader>' . a:map . '<space><enter> :' . s:cmd . 'g/^\s*$/de<cr>'
-	execute 'vnoremap <leader>' . a:map . '<space><tab>   :' . s:cmd . 's/<space>\+<tab>/<tab>/e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space>4       :' . l:cmd . 's/\s\+$//e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space>$       :' . l:cmd . 's/\s\+$//e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space>6       :' . l:cmd . 's/^\s\+//e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space>^       :' . l:cmd . 's/^\s\+//e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space><enter> :' . l:cmd . 'g/^\s*$/de<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space><tab>   :' . l:cmd . 's/<space>\+<tab>/<tab>/e<cr>'
 endfunction
 
 
