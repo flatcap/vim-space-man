@@ -11,6 +11,54 @@ endif
 let g:loaded_space_man = 1
 
 " wrap up all the space manipulating
+"
+" Notes
+"	try to preserve last search, cursor position, marks, etc
+
+function! s:space_mappings (map, command)
+	" delete whitespace:
+	"	6	leading
+	"	^	leading
+	"	4	trailing
+	"	$	trailing
+	"	<tab>	before tab
+
+	" delete empty lines:
+	"	<enter>	anywhere
+	"	g	at top of file
+	"	G	at bottom of file
+
+	let s:cmd = a:command
+	if (!empty (s:cmd))
+		let s:cmd .= ' '
+	endif
+
+	" delete whitespace
+	execute 'nnoremap <leader>' . a:map . '<space>4       :' . s:cmd . '%s/\(\s\\|\%x0d\)\+$//e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>$       :' . s:cmd . '%s/\(\s\\|\%x0d\)\+$//e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>6       :' . s:cmd . '%s/^\s\+//e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>^       :' . s:cmd . '%s/^\s\+//e<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space><tab>   :' . s:cmd . '%s/<space>\+<tab>/<tab>/e<cr>'
+
+	" delete lines
+	execute 'nnoremap <leader>' . a:map . '<space><enter> :' . s:cmd . '%g/^\s*$/de<cr>'
+	execute 'nnoremap <leader>' . a:map . '<space>g       :' . s:cmd . '%s/\%^\_s\+\n'
+	execute 'nnoremap <leader>' . a:map . '<space>G       :' . s:cmd . '%s/\n\_s\+\%$'
+
+	" visual delete whitespace
+	execute 'vnoremap <leader>' . a:map . '<space>4       :' . s:cmd . 's/\s\+$//e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space>$       :' . s:cmd . 's/\s\+$//e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space>6       :' . s:cmd . 's/^\s\+//e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space>^       :' . s:cmd . 's/^\s\+//e<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space><enter> :' . s:cmd . 'g/^\s*$/de<cr>'
+	execute 'vnoremap <leader>' . a:map . '<space><tab>   :' . s:cmd . 's/<space>\+<tab>/<tab>/e<cr>'
+endfunction
+
+
+call s:space_mappings ('',  '')	" bare mappings first
+call s:space_mappings ('a', 'argdo')
+call s:space_mappings ('b', 'bufdo')
+call s:space_mappings ('w', 'windo')
 
 " tidy whitespace
 "	actions:
@@ -21,6 +69,7 @@ let g:loaded_space_man = 1
 "	work on:
 "		line
 "		visual
+"		motion
 "		file
 "		window
 "		buffer
@@ -28,11 +77,13 @@ let g:loaded_space_man = 1
 
 " delete empty lines
 "	actions:
-"		delete empty lines
+"		delete empty lines (space-enter)
 "		delete empty lines at top of file (space-g)
 "		delete empty lines at bottom of file (space-G)
 "
 "	work on:
+"		visual
+"		motion
 "		file
 "		window
 "		buffer
