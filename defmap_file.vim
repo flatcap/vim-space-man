@@ -45,7 +45,7 @@ function! s:MakeMappings(map, command)
 	execute 'vmap <Leader>'.a:map.'<Space><Tab>   :'.s:cmd.'s/<Space>\+<Tab>/<Tab>/e<CR>'
 endfunction
 
-call s:MakeMappings('',   '')	" bare mappings first
+call s:MakeMappings('',  '')	" bare mappings first
 call s:MakeMappings('a', 'argdo')
 call s:MakeMappings('b', 'bufdo')
 call s:MakeMappings('w', 'windo')
