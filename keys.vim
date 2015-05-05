@@ -1,0 +1,6 @@
+syn match green "^\C\i\+$"
+syntax match yellow "<leader>"
+syntax match green "<space>"
+syntax match cyan "<\(s-\)*tab>"
+syntax match cyan "<enter>"
+syntax match magenta "{motion}"

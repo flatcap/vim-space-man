@@ -1,0 +1,75 @@
+LEAD
+	line		<leader><space>66
+	visual		<leader><space>6
+	motion		<leader><space>6{motion}
+	file		<leader>f<space>6
+	window		<leader>w<space>6
+	buffer		<leader>b<space>6
+	args		<leader>a<space>6
+
+TRAIL
+	line		<leader><space>44
+	visual		<leader><space>4
+	motion		<leader><space>4{motion}
+	file		<leader>f<space>4
+	window		<leader>w<space>4
+	buffer		<leader>b<space>4
+	args		<leader>a<space>4
+
+ERROR
+	line		<leader><space><tab><tab>
+	visual		<leader><space><tab>
+	motion		<leader><space><tab>{motion}
+	file		<leader>f<space><tab>
+	window		<leader>w<space><tab>
+	buffer		<leader>b<space><tab>
+	args		<leader>a<space><tab>
+
+DUPE
+	line		<leader><space><space><space>
+	visual		<leader><space><space>
+	motion		<leader><space><space>{motion}
+	file		<leader>f<space><space>
+	window		<leader>w<space><space>
+	buffer		<leader>b<space><space>
+	args		<leader>a<space><space>
+
+EMPTY
+	line		<leader><enter><enter>
+	visual		<leader><enter>
+	motion		<leader><enter>{motion}
+	file		<leader>f<enter>
+	window		<leader>w<enter>
+	buffer		<leader>b<enter>
+	args		<leader>a<enter>
+
+TOP
+	file		<leader>f<enter>g
+	window		<leader>w<enter>g
+	buffer		<leader>b<enter>g
+	args		<leader>a<enter>g
+
+BOTTOM
+	file		<leader>f<enter>G
+	window		<leader>w<enter>G
+	buffer		<leader>b<enter>G
+	args		<leader>a<enter>G
+
+TABEXPAND
+	line		4<leader><s-tab><s-tab>
+	visual		4<leader><s-tab>
+	motion		4<leader><s-tab>{motion}
+	file		4<leader>f<s-tab>
+	window		4<leader>w<s-tab>
+	buffer		4<leader>b<s-tab>
+	args		4<leader>a<s-tab>
+
+TABUNEXPAND
+	line		4<leader><tab><tab>
+	visual		4<leader><tab>
+	motion		4<leader><tab>{motion}
+	file		4<leader>f<tab>
+	window		4<leader>w<tab>
+	buffer		4<leader>b<tab>
+	args		4<leader>a<tab>
+

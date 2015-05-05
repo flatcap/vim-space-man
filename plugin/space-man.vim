@@ -13,7 +13,8 @@ let g:loaded_space_man = 1
 " wrap up all the space manipulating
 "
 " Notes
-"	try to preserve last search, cursor position, marks, etc
+"	option: try to preserve last search, cursor position, marks, etc
+"	option: print a summary of changes
 
 function! s:space_mappings (map, command)
 	" delete whitespace:
@@ -70,6 +71,7 @@ call s:space_mappings ('w', 'windo')
 "		line
 "		visual
 "		motion
+"
 "		file
 "		window
 "		buffer
@@ -78,12 +80,15 @@ call s:space_mappings ('w', 'windo')
 " delete empty lines
 "	actions:
 "		delete empty lines (space-enter)
+"		squash empty lines (space-space)
 "		delete empty lines at top of file (space-g)
 "		delete empty lines at bottom of file (space-G)
 "
 "	work on:
+"		line
 "		visual
 "		motion
+"
 "		file
 "		window
 "		buffer
@@ -97,6 +102,8 @@ call s:space_mappings ('w', 'windo')
 "	work on:
 "		line
 "		visual
+"		motion
+"
 "		file
 "		window
 "		buffer
