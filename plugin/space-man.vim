@@ -186,4 +186,3 @@ endfunction
 "	48<motion> => tabsize 4 -> tabsize 8
 "	84<motion> => tabsize 8 -> tabsize 4
 
-" vim:set noet ts=8 sw=8:
