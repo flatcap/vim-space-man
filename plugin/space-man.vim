@@ -37,7 +37,7 @@ function! s:tab_unexpand (...)
 endfunction
 
 
-function s:tabby_mappings()
+function! s:tabby_mappings()
 	nnoremap <silent> <Plug>TabbyExpandA :<C-U>call <SID>tab_expand (1, line ('$'))<CR>
 	nnoremap <silent> <Plug>TabbyExpandL :<C-U>call <SID>tab_expand (line ('.'), line ('.'))<CR>
 	xnoremap <silent> <Plug>TabbyExpandV :<C-U>call <SID>tab_expand (line ('''<'), line ('''>'))<CR>
