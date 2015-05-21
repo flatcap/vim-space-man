@@ -11,133 +11,176 @@ finish
 " endif
 " let g:loaded_space_man = 1
 
-function! s:tab_expand (...) range
-	echohl error
-	echom 'expand: ' . a:0 a:1
-	echom 'count: ' . v:count v:count1
-	echohl none
-	if (a:0 == 2)
-		let [l:start, l:stop] = [a:1, a:2]
-	else
-		let [l:start, l:stop] = [line ('''['), line (''']')]
-	endif
-
-	execute l:start . ',' . l:stop . '!expand --tabs ' . v:count1
-endfunction
-
-function! s:tab_unexpand (...)
-	echohl error
-	echom 'count: ' . v:count v:count1
-	echohl none
-	if (a:0 == 2)
-		let [l:start, l:stop] = [a:1, a:2]
-	else
-		let [l:start, l:stop] = [line ('''['), line (''']')]
-	endif
-
-	execute l:start . ',' . l:stop . '!unexpand --tabs ' . v:count1 . ' --first-only'
-endfunction
-
-
-function! s:tabby_mappings()
-	nnoremap <silent> <Plug>TabbyExpandA :<C-U>call <SID>tab_expand (1, line ('$'))<CR>
-	nnoremap <silent> <Plug>TabbyExpandL :<C-U>call <SID>tab_expand (line ('.'), line ('.'))<CR>
-	nnoremap <silent> <Plug>TabbyExpandM :set opfunc=<SID>tab_expand<CR>g@
-	xnoremap <silent> <Plug>TabbyExpandV :<C-U>call <SID>tab_expand (line ('''<'), line ('''>'))<CR>
-
-	" nnoremap <silent> <Plug>TabbyUnexpandA :<C-U>call <SID>tab_unexpand (1, line ('$'))<CR>
-	" nnoremap <silent> <Plug>TabbyUnexpandL :<C-U>call <SID>tab_unexpand (line ('.'), line ('.'))<CR>
-	" nnoremap <silent> <Plug>TabbyUnexpandM :<C-U>set opfunc=<SID>tab_unexpand<CR>g@
-	" xnoremap <silent> <Plug>TabbyUnexpandV :<C-U>call <SID>tab_unexpand (line ('''<'), line ('''>'))<CR>
-
-	nmap <Leader>f<S-Tab>       <Plug>TabbyExpandA
-	nmap <Leader><S-Tab><S-Tab> <Plug>TabbyExpandL
-	nmap <Leader><S-Tab>        <Plug>TabbyExpandM
-	xmap <Leader><S-Tab>        <Plug>TabbyExpandV
-
-	nmap <F3> 4,<S-Tab>ip:messages<cr>
-
-	" nmap <Leader>f<Tab>         <Plug>TabbyUnexpandA
-	" nmap <Leader><Tab><Tab>     <Plug>TabbyUnexpandL
-	" nmap <Leader><Tab>          <Plug>TabbyUnexpandM
-	" xmap <Leader><Tab>          <Plug>TabbyUnexpandV
-endfunction
-
-function! s:file_mappings()
-	let l:commands = [
-	\	[ 'f', ''      ],
-	\	[ 'a', 'argdo' ],
-	\	[ 'b', 'bufdo' ],
-	\	[ 'w', 'windo' ]
-	\ ]
-
-	for l:i in l:commands
-		let l:key = l:i[0]
-		let l:cmd = l:i[1]
-
-		" delete whitespace
-		execute 'nnoremap <leader>' . l:key . '<space>4       :' . l:cmd . '%s/\(\s\\|\%x0d\)\+$//e<cr>'
-		execute 'nnoremap <leader>' . l:key . '<space><tab>   :' . l:cmd . '%s/<space>\+<tab>/<tab>/e<cr>'
-
-		" delete lines
-		execute 'nnoremap <leader>' . l:key . '<enter>        :' . l:cmd . '%g/^\s*$/de<cr>'
-		execute 'nnoremap <leader>' . l:key . '<space><space> :' . l:cmd . 'SQUASH DUPE BLANKS'
-		execute 'nnoremap <leader>' . l:key . '<enter>g       :' . l:cmd . '%s/\%^\_s\+\n'
-		execute 'nnoremap <leader>' . l:key . '<enter>G       :' . l:cmd . '%s/\n\_s\+\%$'
-
-		" manipulate tabs
-		execute 'nnoremap <leader>' . l:key . '<tab>          :' . l:cmd . 'TAB UNEXPAND'
-		execute 'nnoremap <leader>' . l:key . '<s-tab>        :' . l:cmd . 'TAB EXPAND'
-	endfor
-endfunction
-
-function! s:space_mappings (map, command)
-
-" LINE
-	" delete whitespace
-	execute 'nnoremap <leader><space>44             :%s/\(\s\\|\%x0d\)\+$//e<cr>'
-	execute 'nnoremap <leader><space><tab><tab>     :%s/<space>\+<tab>/<tab>/e<cr>'
-
-	" delete lines
-	execute 'nnoremap <leader><space><space><space> :SQUASH DUPE BLANK LINES'
-	execute 'nnoremap <leader><enter><enter>        :%g/^\s*$/de<cr>'
-
-	" manipulate tabs
-	execute 'nnoremap <leader><tab><tab>            :TAB UNEXPAND'
-	execute 'nnoremap <leader><s-tab><s-tab>        :TAB EXPAND'
-
-" MOTION
-	" delete whitespace
-	execute 'nnoremap <leader><space>4              :%s/\(\s\\|\%x0d\)\+$//e<cr>'
-	execute 'nnoremap <leader><space><tab>          :%s/<space>\+<tab>/<tab>/e<cr>'
-
-	" delete lines
-	execute 'nnoremap <leader><space><space>        :SQUASH DUPE BLANK LINES'
-	execute 'nnoremap <leader><enter>               :%g/^\s*$/de<cr>'
-
-	" manipulate tabs
-	execute 'nnoremap <leader><tab>                 :TAB UNEXPAND'
-	execute 'nnoremap <leader><s-tab>               :TAB EXPAND'
-
-" VISUAL
-	" visual delete whitespace
-	execute 'xnoremap <leader><space>4              :s/\s\+$//e<cr>'
-	execute 'xnoremap <leader><space><tab>          :s/<space>\+<tab>/<tab>/e<cr>'
-
-	" visual delete lines
-	execute 'xnoremap <leader><space><space>        :SQUASH DUPE BLANK LINES'
-	execute 'xnoremap <leader><space><enter>        :g/^\s*$/de<cr>'
-
-	" manipulate tabs
-	execute 'xnoremap <leader><tab>                 :TAB UNEXPAND'
-	execute 'xnoremap <leader><s-tab>               :TAB EXPAND'
-endfunction
-
-
-" call <SID>tabby_mappings()
-" set list
-
 let s:scope_list = { 'a': 'argdo', 'b': 'bufdo', 'f': '', 'w': 'windo' }
+
+function! s:translate (func)
+	execute 'setlocal operatorfunc=' . a:func
+	if (v:count == 0)
+		return 'g@'
+	else
+		return 'g@g@'
+	endif
+endfunction
+
+
+function! BlankLinesBottom (scope)
+	let cmd = s:scope_list[a:scope] . ' %'
+	let cmd .= 's/\n\_s\+\%$'
+	execute cmd
+endfunction
+
+function! s:blank_lines_bottom_map()
+	nnoremap <Plug>BlankLinesBottomA :<C-U>call BlankLinesBottom ('a')<CR>
+	nnoremap <Plug>BlankLinesBottomB :<C-U>call BlankLinesBottom ('b')<CR>
+	nnoremap <Plug>BlankLinesBottomF :<C-U>call BlankLinesBottom ('f')<CR>
+	nnoremap <Plug>BlankLinesBottomW :<C-U>call BlankLinesBottom ('w')<CR>
+endfunction
+
+function! s:blank_lines_bottom_user_map()
+	nmap <Leader>a<enter>G <Plug>BlankLinesBottomA
+	nmap <Leader>b<enter>G <Plug>BlankLinesBottomB
+	nmap <Leader>f<enter>G <Plug>BlankLinesBottomF
+	nmap <Leader>w<enter>G <Plug>BlankLinesBottomW
+endfunction
+
+
+function! BlankLinesTop (scope)
+	let cmd = s:scope_list[a:scope] . ' %'
+	let cmd .= 's/\%^\_s\+\n'
+	execute cmd
+endfunction
+
+function! s:blank_lines_top_map()
+	nnoremap <Plug>BlankLinesTopA :<C-U>call BlankLinesTop ('a')<CR>
+	nnoremap <Plug>BlankLinesTopB :<C-U>call BlankLinesTop ('b')<CR>
+	nnoremap <Plug>BlankLinesTopF :<C-U>call BlankLinesTop ('f')<CR>
+	nnoremap <Plug>BlankLinesTopW :<C-U>call BlankLinesTop ('w')<CR>
+endfunction
+
+function! s:blank_lines_top_user_map()
+	nmap <Leader>a<enter>gg <Plug>BlankLinesTopA
+	nmap <Leader>b<enter>gg <Plug>BlankLinesTopB
+	nmap <Leader>f<enter>gg <Plug>BlankLinesTopF
+	nmap <Leader>w<enter>gg <Plug>BlankLinesTopW
+endfunction
+
+
+function! EmptyLinesDelete (...)
+	if (a:0 == 1)
+		if (a:1 == 'line')
+			" Motion
+			let cmd = "'[,']"
+		else
+			" 1 arg: scope
+			let cmd = s:scope_list[a:1] . ' %'
+		endif
+	else
+		" 2 args: start,stop
+		let cmd = a:1 . ',' . a:2
+	endif
+
+	let cmd .= 'g/^\s*$/de'
+	execute cmd
+endfunction
+
+function! s:empty_lines_delete_map()
+	nnoremap <expr> <Plug>EmptyLinesDeleteM <SID>translate ('EmptyLinesDelete')
+	nnoremap        <Plug>EmptyLinesDeleteL :<C-U>call EmptyLinesDelete (line ('.'),  line ('.'))<CR>
+	xnoremap        <Plug>EmptyLinesDeleteV :<C-U>call EmptyLinesDelete (line ("'<"), line ("'>"))<CR>
+	nnoremap        <Plug>EmptyLinesDeleteA :<C-U>call EmptyLinesDelete ('a')<CR>
+	nnoremap        <Plug>EmptyLinesDeleteB :<C-U>call EmptyLinesDelete ('b')<CR>
+	nnoremap        <Plug>EmptyLinesDeleteF :<C-U>call EmptyLinesDelete ('f')<CR>
+	nnoremap        <Plug>EmptyLinesDeleteW :<C-U>call EmptyLinesDelete ('w')<CR>
+endfunction
+
+function! s:empty_lines_delete_user_map()
+	nmap <Leader><enter>dd  <Plug>EmptyLinesDeleteL
+	nmap <Leader><enter>d   <Plug>EmptyLinesDeleteM
+	xmap <Leader><enter>d   <Plug>EmptyLinesDeleteV
+	nmap <Leader>a<enter>d  <Plug>EmptyLinesDeleteA
+	nmap <Leader>b<enter>d  <Plug>EmptyLinesDeleteB
+	nmap <Leader>f<enter>d  <Plug>EmptyLinesDeleteF
+	nmap <Leader>w<enter>d  <Plug>EmptyLinesDeleteW
+endfunction
+
+
+function! EmptyLinesSqueeze (...)
+	if (a:0 == 1)
+		if (a:1 == 'line')
+			" Motion
+			let cmd = "'[,']"
+		else
+			" 1 arg: scope
+			let cmd = s:scope_list[a:1] . ' %'
+		endif
+	else
+		" 2 args: start,stop
+		let cmd = a:1 . ',' . a:2
+	endif
+
+	let cmd .= 's/\v\n(\s*\n){2,}//e'
+	execute cmd
+endfunction
+
+function! s:empty_lines_squeeze_map()
+	nnoremap <expr> <Plug>EmptyLinesSqueezeM <SID>translate ('EmptyLinesSqueeze')
+	nnoremap        <Plug>EmptyLinesSqueezeL :<C-U>call EmptyLinesSqueeze (line ('.'),  line ('.'))<CR>
+	xnoremap        <Plug>EmptyLinesSqueezeV :<C-U>call EmptyLinesSqueeze (line ("'<"), line ("'>"))<CR>
+	nnoremap        <Plug>EmptyLinesSqueezeA :<C-U>call EmptyLinesSqueeze ('a')<CR>
+	nnoremap        <Plug>EmptyLinesSqueezeB :<C-U>call EmptyLinesSqueeze ('b')<CR>
+	nnoremap        <Plug>EmptyLinesSqueezeF :<C-U>call EmptyLinesSqueeze ('f')<CR>
+	nnoremap        <Plug>EmptyLinesSqueezeW :<C-U>call EmptyLinesSqueeze ('w')<CR>
+endfunction
+
+function! s:empty_lines_squeeze_user_map()
+	nmap <Leader><enter>zz  <Plug>EmptyLinesSqueezeL
+	nmap <Leader><enter>z   <Plug>EmptyLinesSqueezeM
+	xmap <Leader><enter>z   <Plug>EmptyLinesSqueezeV
+	nmap <Leader>a<enter>z  <Plug>EmptyLinesSqueezeA
+	nmap <Leader>b<enter>z  <Plug>EmptyLinesSqueezeB
+	nmap <Leader>f<enter>z  <Plug>EmptyLinesSqueezeF
+	nmap <Leader>w<enter>z  <Plug>EmptyLinesSqueezeW
+endfunction
+
+
+function! SpaceError (...)
+	if (a:0 == 1)
+		if (a:1 == 'line')
+			" Motion
+			let cmd = "'[,']"
+		else
+			" 1 arg: scope
+			let cmd = s:scope_list[a:1] . ' %'
+		endif
+	else
+		" 2 args: start,stop
+		let cmd = a:1 . ',' . a:2
+	endif
+
+	let cmd .= 's/<space>\+<tab>/<tab>/e'
+	execute cmd
+endfunction
+
+function! s:space_error_map()
+	nnoremap <expr> <Plug>SpaceErrorM <SID>translate ('SpaceError')
+	nnoremap        <Plug>SpaceErrorL :<C-U>call SpaceError (line ('.'),  line ('.'))<CR>
+	xnoremap        <Plug>SpaceErrorV :<C-U>call SpaceError (line ("'<"), line ("'>"))<CR>
+	nnoremap        <Plug>SpaceErrorA :<C-U>call SpaceError ('a')<CR>
+	nnoremap        <Plug>SpaceErrorB :<C-U>call SpaceError ('b')<CR>
+	nnoremap        <Plug>SpaceErrorF :<C-U>call SpaceError ('f')<CR>
+	nnoremap        <Plug>SpaceErrorW :<C-U>call SpaceError ('w')<CR>
+endfunction
+
+function! s:space_error_user_map()
+	nmap <Leader><space>ee  <Plug>SpaceErrorL
+	nmap <Leader><space>e   <Plug>SpaceErrorM
+	xmap <Leader><space>e   <Plug>SpaceErrorV
+	nmap <Leader>a<space>e  <Plug>SpaceErrorA
+	nmap <Leader>b<space>e  <Plug>SpaceErrorB
+	nmap <Leader>f<space>e  <Plug>SpaceErrorF
+	nmap <Leader>w<space>e  <Plug>SpaceErrorW
+endfunction
+
 
 function! SpaceLeading (...)
 	if (a:0 == 1)
@@ -150,23 +193,14 @@ function! SpaceLeading (...)
 		endif
 	else
 		" 2 args: start,stop
-		let cmd = a:start . ',' . a:stop
+		let cmd = a:1 . ',' . a:2
 	endif
 
 	let cmd .= 's/^\s\+//e'
 	execute cmd
 endfunction
 
-function! s:translate (func)
-	execute 'setlocal operatorfunc=' . a:func
-	if (v:count == 0)
-		return 'g@'
-	else
-		return 'g@g@'
-	endif
-endfunction
-
-function! SpaceLeadingMap (...)
+function! s:space_leading_map()
 	nnoremap <expr> <Plug>SpaceLeadingM <SID>translate ('SpaceLeading')
 	nnoremap        <Plug>SpaceLeadingL :<C-U>call SpaceLeading (line ('.'),  line ('.'))<CR>
 	xnoremap        <Plug>SpaceLeadingV :<C-U>call SpaceLeading (line ("'<"), line ("'>"))<CR>
@@ -176,39 +210,150 @@ function! SpaceLeadingMap (...)
 	nnoremap        <Plug>SpaceLeadingW :<C-U>call SpaceLeading ('w')<CR>
 endfunction
 
+function! s:space_leading_user_map()
+	nmap <Leader><space>ll  <Plug>SpaceLeadingL
+	nmap <Leader><space>l   <Plug>SpaceLeadingM
+	xmap <Leader><space>l   <Plug>SpaceLeadingV
+	nmap <Leader>a<space>l  <Plug>SpaceLeadingA
+	nmap <Leader>b<space>l  <Plug>SpaceLeadingB
+	nmap <Leader>f<space>l  <Plug>SpaceLeadingF
+	nmap <Leader>w<space>l  <Plug>SpaceLeadingW
+endfunction
+
+
 function! SpaceTrailing (...)
+	if (a:0 == 1)
+		if (a:1 == 'line')
+			" Motion
+			let cmd = "'[,']"
+		else
+			" 1 arg: scope
+			let cmd = s:scope_list[a:1] . ' %'
+		endif
+	else
+		" 2 args: start,stop
+		let cmd = a:1 . ',' . a:2
+	endif
+
+	let cmd .= 's/\(\s\\|\%x0d\)\+$//e'
+	execute cmd
 endfunction
 
-function! SpaceError (...)
+function! s:space_trailing_map()
+	nnoremap <expr> <Plug>SpaceTrailingM <SID>translate ('SpaceTrailing')
+	nnoremap        <Plug>SpaceTrailingL :<C-U>call SpaceTrailing (line ('.'),  line ('.'))<CR>
+	xnoremap        <Plug>SpaceTrailingV :<C-U>call SpaceTrailing (line ("'<"), line ("'>"))<CR>
+	nnoremap        <Plug>SpaceTrailingA :<C-U>call SpaceTrailing ('a')<CR>
+	nnoremap        <Plug>SpaceTrailingB :<C-U>call SpaceTrailing ('b')<CR>
+	nnoremap        <Plug>SpaceTrailingF :<C-U>call SpaceTrailing ('f')<CR>
+	nnoremap        <Plug>SpaceTrailingW :<C-U>call SpaceTrailing ('w')<CR>
 endfunction
 
-function! SpaceSurround (...)
+function! s:space_trailing_user_map()
+	nmap <Leader><space>tt  <Plug>SpaceTrailingL
+	nmap <Leader><space>t   <Plug>SpaceTrailingM
+	xmap <Leader><space>t   <Plug>SpaceTrailingV
+	nmap <Leader>a<space>t  <Plug>SpaceTrailingA
+	nmap <Leader>b<space>t  <Plug>SpaceTrailingB
+	nmap <Leader>f<space>t  <Plug>SpaceTrailingF
+	nmap <Leader>w<space>t  <Plug>SpaceTrailingW
 endfunction
 
-function! EmptyLinesSqueeze (...)
-endfunction
-
-function! EmptyLinesDelete (...)
-endfunction
-
-function! BlankLinesTop (...)
-endfunction
-
-function! BlankLinesBottom (...)
-endfunction
-
-function! TabsSpaces (...)
-endfunction
 
 function! SpacesTabs (...)
+	if (a:0 == 1)
+		if (a:1 == 'line')
+			" Motion
+			let cmd = "'[,']"
+		else
+			" 1 arg: scope
+			let cmd = s:scope_list[a:1] . ' %'
+		endif
+	else
+		" 2 args: start,stop
+		let cmd = a:1 . ',' . a:2
+	endif
+
+	let cmd .= '!unexpand --tabs ' . v:count1 . ' --first-only'
+	execute cmd
+endfunction
+
+function! s:spaces_tabs_map()
+	nnoremap <expr> <Plug>SpacesTabsM <SID>translate ('SpacesTabs')
+	nnoremap        <Plug>SpacesTabsL :<C-U>call SpacesTabs (line ('.'),  line ('.'))<CR>
+	xnoremap        <Plug>SpacesTabsV :<C-U>call SpacesTabs (line ("'<"), line ("'>"))<CR>
+	nnoremap        <Plug>SpacesTabsA :<C-U>call SpacesTabs ('a')<CR>
+	nnoremap        <Plug>SpacesTabsB :<C-U>call SpacesTabs ('b')<CR>
+	nnoremap        <Plug>SpacesTabsF :<C-U>call SpacesTabs ('f')<CR>
+	nnoremap        <Plug>SpacesTabsW :<C-U>call SpacesTabs ('w')<CR>
+endfunction
+
+function! s:spaces_tabs_user_map()
+	nmap <Leader><space><tab><tab> <Plug>TabstabsL
+	nmap <Leader><space><tab>      <Plug>TabstabsM
+	xmap <Leader><space><tab>      <Plug>TabstabsV
+	nmap <Leader>a<space><tab>     <Plug>TabstabsA
+	nmap <Leader>b<space><tab>     <Plug>TabstabsB
+	nmap <Leader>f<space><tab>     <Plug>TabstabsF
+	nmap <Leader>w<space><tab>     <Plug>TabstabsW
 endfunction
 
 
-nmap <Leader><space>ll  <Plug>SpaceLeadingM
-nmap <Leader><space>l   <Plug>SpaceLeadingL
-xmap <Leader><space>l   <Plug>SpaceLeadingV
-nmap <Leader>a<space>l  <Plug>SpaceLeadingA
-nmap <Leader>b<space>l  <Plug>SpaceLeadingB
-nmap <Leader>f<space>l  <Plug>SpaceLeadingF
-nmap <Leader>w<space>l  <Plug>SpaceLeadingW
+function! TabsSpaces (...)
+	if (a:0 == 1)
+		if (a:1 == 'line')
+			" Motion
+			let cmd = "'[,']"
+		else
+			" 1 arg: scope
+			let cmd = s:scope_list[a:1] . ' %'
+		endif
+	else
+		" 2 args: start,stop
+		let cmd = a:1 . ',' . a:2
+	endif
+
+	let cmd .= '!expand --tabs ' . v:count1
+	execute cmd
+endfunction
+
+function! s:tabs_spaces_map()
+	nnoremap <expr> <Plug>TabsSpacesM <SID>translate ('TabsSpaces')
+	nnoremap        <Plug>TabsSpacesL :<C-U>call TabsSpaces (line ('.'),  line ('.'))<CR>
+	xnoremap        <Plug>TabsSpacesV :<C-U>call TabsSpaces (line ("'<"), line ("'>"))<CR>
+	nnoremap        <Plug>TabsSpacesA :<C-U>call TabsSpaces ('a')<CR>
+	nnoremap        <Plug>TabsSpacesB :<C-U>call TabsSpaces ('b')<CR>
+	nnoremap        <Plug>TabsSpacesF :<C-U>call TabsSpaces ('f')<CR>
+	nnoremap        <Plug>TabsSpacesW :<C-U>call TabsSpaces ('w')<CR>
+endfunction
+
+function! s:tabs_spaces_user_map()
+	nmap <Leader><tab><space><space> <Plug>TabstabsL
+	nmap <Leader><tab><space>        <Plug>TabstabsM
+	xmap <Leader><tab><space>        <Plug>TabstabsV
+	nmap <Leader>a<tab><space>       <Plug>TabstabsA
+	nmap <Leader>b<tab><space>       <Plug>TabstabsB
+	nmap <Leader>f<tab><space>       <Plug>TabstabsF
+	nmap <Leader>w<tab><space>       <Plug>TabstabsW
+endfunction
+
+
+call <SID>blank_lines_bottom_map()
+call <SID>blank_lines_bottom_user_map()
+call <SID>blank_lines_top_map()
+call <SID>blank_lines_top_user_map()
+call <SID>empty_lines_delete_map()
+call <SID>empty_lines_delete_user_map()
+call <SID>empty_lines_squeeze_map()
+call <SID>empty_lines_squeeze_user_map()
+call <SID>spaces_tabs_map()
+call <SID>spaces_tabs_user_map()
+call <SID>space_error_map()
+call <SID>space_error_user_map()
+call <SID>space_leading_map()
+call <SID>space_leading_user_map()
+call <SID>space_trailing_map()
+call <SID>space_trailing_user_map()
+call <SID>tabs_spaces_map()
+call <SID>tabs_spaces_user_map()
 
