@@ -4,7 +4,6 @@
 " Copyright:    2015 Richard Russon
 " License:      GPLv3 <http://fsf.org/>
 " Version:      1.0
-finish
 
 " if (exists ('g:loaded_space_man') || &cp || (v:version < 700))
 " 	finish
@@ -53,7 +52,7 @@ function! BlankLinesTop (scope)
 endfunction
 
 function! s:blank_lines_top_map()
-	if (get (g: 'space_man_enable_blank_lines_top', 1))
+	if (get (g:, 'space_man_enable_blank_lines_top', 1))
 		nnoremap <Plug>BlankLinesTopA :<C-U>call BlankLinesTop ('a')<CR>
 		nnoremap <Plug>BlankLinesTopB :<C-U>call BlankLinesTop ('b')<CR>
 		nnoremap <Plug>BlankLinesTopF :<C-U>call BlankLinesTop ('f')<CR>
@@ -88,7 +87,7 @@ function! EmptyLinesDelete (...)
 endfunction
 
 function! s:empty_lines_delete_map()
-	if (get (g: 'space_man_enable_empty_lines_delete', 1))
+	if (get (g:, 'space_man_enable_empty_lines_delete', 1))
 		nnoremap <expr> <Plug>EmptyLinesDeleteM <SID>translate ('EmptyLinesDelete')
 		nnoremap        <Plug>EmptyLinesDeleteL :<C-U>call EmptyLinesDelete (line ('.'),  line ('.'))<CR>
 		xnoremap        <Plug>EmptyLinesDeleteV :<C-U>call EmptyLinesDelete (line ("'<"), line ("'>"))<CR>
@@ -129,7 +128,7 @@ function! EmptyLinesSqueeze (...)
 endfunction
 
 function! s:empty_lines_squeeze_map()
-	if (get (g: 'space_man_enable_empty_lines_squeeze', 1))
+	if (get (g:, 'space_man_enable_empty_lines_squeeze', 1))
 		nnoremap <expr> <Plug>EmptyLinesSqueezeM <SID>translate ('EmptyLinesSqueeze')
 		nnoremap        <Plug>EmptyLinesSqueezeL :<C-U>call EmptyLinesSqueeze (line ('.'),  line ('.'))<CR>
 		xnoremap        <Plug>EmptyLinesSqueezeV :<C-U>call EmptyLinesSqueeze (line ("'<"), line ("'>"))<CR>
@@ -170,7 +169,7 @@ function! SpaceError (...)
 endfunction
 
 function! s:space_error_map()
-	if (get (g: 'space_man_enable_space_error', 1))
+	if (get (g:, 'space_man_enable_space_error', 1))
 		nnoremap <expr> <Plug>SpaceErrorM <SID>translate ('SpaceError')
 		nnoremap        <Plug>SpaceErrorL :<C-U>call SpaceError (line ('.'),  line ('.'))<CR>
 		xnoremap        <Plug>SpaceErrorV :<C-U>call SpaceError (line ("'<"), line ("'>"))<CR>
@@ -211,7 +210,7 @@ function! SpaceLeading (...)
 endfunction
 
 function! s:space_leading_map()
-	if (get (g: 'space_man_enable_space_leading', 1))
+	if (get (g:, 'space_man_enable_space_leading', 1))
 		nnoremap <expr> <Plug>SpaceLeadingM <SID>translate ('SpaceLeading')
 		nnoremap        <Plug>SpaceLeadingL :<C-U>call SpaceLeading (line ('.'),  line ('.'))<CR>
 		xnoremap        <Plug>SpaceLeadingV :<C-U>call SpaceLeading (line ("'<"), line ("'>"))<CR>
@@ -252,7 +251,7 @@ function! SpaceTrailing (...)
 endfunction
 
 function! s:space_trailing_map()
-	if (get (g: 'space_man_enable_space_trailing', 1))
+	if (get (g:, 'space_man_enable_space_trailing', 1))
 		nnoremap <expr> <Plug>SpaceTrailingM <SID>translate ('SpaceTrailing')
 		nnoremap        <Plug>SpaceTrailingL :<C-U>call SpaceTrailing (line ('.'),  line ('.'))<CR>
 		xnoremap        <Plug>SpaceTrailingV :<C-U>call SpaceTrailing (line ("'<"), line ("'>"))<CR>
@@ -293,7 +292,7 @@ function! SpacesTabs (...)
 endfunction
 
 function! s:spaces_tabs_map()
-	if (get (g: 'space_man_enable_spaces_tabs', 1))
+	if (get (g:, 'space_man_enable_spaces_tabs', 1))
 		nnoremap <expr> <Plug>SpacesTabsM <SID>translate ('SpacesTabs')
 		nnoremap        <Plug>SpacesTabsL :<C-U>call SpacesTabs (line ('.'),  line ('.'))<CR>
 		xnoremap        <Plug>SpacesTabsV :<C-U>call SpacesTabs (line ("'<"), line ("'>"))<CR>
@@ -334,7 +333,7 @@ function! TabsSpaces (...)
 endfunction
 
 function! s:tabs_spaces_map()
-	if (get (g: 'space_man_enable_tabs_spaces', 1))
+	if (get (g:, 'space_man_enable_tabs_spaces', 1))
 		nnoremap <expr> <Plug>TabsSpacesM <SID>translate ('TabsSpaces')
 		nnoremap        <Plug>TabsSpacesL :<C-U>call TabsSpaces (line ('.'),  line ('.'))<CR>
 		xnoremap        <Plug>TabsSpacesV :<C-U>call TabsSpaces (line ("'<"), line ("'>"))<CR>
