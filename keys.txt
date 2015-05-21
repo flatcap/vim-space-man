@@ -1,75 +1,84 @@
-LEAD
-	line		<leader><space>66
-	visual		<leader><space>6
-	motion		<leader><space>6{motion}
-	file		<leader>f<space>6
-	window		<leader>w<space>6
-	buffer		<leader>b<space>6
-	args		<leader>a<space>6
+repeat not meaningful
+count/motion
 
-TRAIL
-	line		<leader><space>44
-	visual		<leader><space>4
-	motion		<leader><space>4{motion}
-	file		<leader>f<space>4
-	window		<leader>w<space>4
-	buffer		<leader>b<space>4
-	args		<leader>a<space>4
+SPACE_LEADING - <space>l
+	line		<leader><space>ll
+	visual		<leader><space>l
+	motion		<leader><space>l{motion}
+	file		<leader>f<space>l
+	window		<leader>w<space>l
+	buffer		<leader>b<space>l
+	args		<leader>a<space>l
 
-ERROR
-	line		<leader><space><tab><tab>
-	visual		<leader><space><tab>
-	motion		<leader><space><tab>{motion}
-	file		<leader>f<space><tab>
-	window		<leader>w<space><tab>
-	buffer		<leader>b<space><tab>
-	args		<leader>a<space><tab>
+SPACE_TRAILING - <space>t
+	line		<leader><space>tt
+	visual		<leader><space>t
+	motion		<leader><space>t{motion}
+	file		<leader>f<space>t
+	window		<leader>w<space>t
+	buffer		<leader>b<space>t
+	args		<leader>a<space>t
 
-DUPE
-	line		<leader><space><space><space>
-	visual		<leader><space><space>
-	motion		<leader><space><space>{motion}
-	file		<leader>f<space><space>
-	window		<leader>w<space><space>
-	buffer		<leader>b<space><space>
-	args		<leader>a<space><space>
+SPACE_ERROR - <space>e
+	line		<leader><space>ee
+	visual		<leader><space>e
+	motion		<leader><space>e{motion}
+	file		<leader>f<space>e
+	window		<leader>w<space>e
+	buffer		<leader>b<space>e
+	args		<leader>a<space>e
 
-EMPTY
-	line		<leader><enter><enter>
-	visual		<leader><enter>
-	motion		<leader><enter>{motion}
-	file		<leader>f<enter>
-	window		<leader>w<enter>
-	buffer		<leader>b<enter>
-	args		<leader>a<enter>
+SPACE_SURROUND - <space>s
+	line		<leader><space>ss
+	visual		<leader><space>s
+	motion		<leader><space>s{motion}
 
-TOP
-	file		<leader>f<enter>g
-	window		<leader>w<enter>g
-	buffer		<leader>b<enter>g
-	args		<leader>a<enter>g
+EMPTY_LINES_SQUEEZE - <enter>z
+	line		<leader><enter>zz
+	visual		<leader><enter>z
+	motion		<leader><enter>z{motion}
+	file		<leader>f<enter>z
+	window		<leader>w<enter>z
+	buffer		<leader>b<enter>z
+	args		<leader>a<enter>z
 
-BOTTOM
+EMPTY_LINES_DELETE - <enter>d
+	line		<leader><enter>dd
+	visual		<leader><enter>d
+	motion		<leader><enter>d{motion}
+	file		<leader>f<enter>d
+	window		<leader>w<enter>d
+	buffer		<leader>b<enter>d
+	args		<leader>a<enter>d
+
+BLANK_LINES_TOP <enter>gg
+	file		<leader>f<enter>gg
+	window		<leader>w<enter>gg
+	buffer		<leader>b<enter>gg
+	args		<leader>a<enter>gg
+
+BLANK_LINES_BOTTOM - <enter>G
 	file		<leader>f<enter>G
 	window		<leader>w<enter>G
 	buffer		<leader>b<enter>G
 	args		<leader>a<enter>G
 
-TABEXPAND
-	line		4<leader><s-tab><s-tab>
-	visual		4<leader><s-tab>
-	motion		4<leader><s-tab>{motion}
-	file		4<leader>f<s-tab>
-	window		4<leader>w<s-tab>
-	buffer		4<leader>b<s-tab>
-	args		4<leader>a<s-tab>
+TABS_SPACES - <tab><space>
+	line		<count><leader><tab><space><space>
+	visual		<count><leader><tab><space>
+	motion		<count><leader><tab><space>{motion}
+	file		<count><leader>f<tab><space>
+	window		<count><leader>w<tab><space>
+	buffer		<count><leader>b<tab><space>
+	args		<count><leader>a<tab><space>
 
-TABUNEXPAND
-	line		4<leader><tab><tab>
-	visual		4<leader><tab>
-	motion		4<leader><tab>{motion}
-	file		4<leader>f<tab>
-	window		4<leader>w<tab>
-	buffer		4<leader>b<tab>
-	args		4<leader>a<tab>
+SPACES_TABS - <space><tab>
+	line		<count><leader><space><tab><tab>
+	visual		<count><leader><space><tab>
+	motion		<count><leader><space><tab>{motion}
+	file		<count><leader>f<space><tab>
+	window		<count><leader>w<space><tab>
+	buffer		<count><leader>b<space><tab>
+	args		<count><leader>a<space><tab>
+
 
