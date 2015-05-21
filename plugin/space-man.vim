@@ -4,19 +4,18 @@
 " Copyright:    2015 Richard Russon
 " License:      GPLv3 <http://fsf.org/>
 " Version:      1.0
+finish
 
-if (exists ('g:loaded_space_man') || &cp || (v:version < 700))
-	finish
-endif
-let g:loaded_space_man = 1
+" if (exists ('g:loaded_space_man') || &cp || (v:version < 700))
+" 	finish
+" endif
+" let g:loaded_space_man = 1
 
-" wrap up all the space manipulating
-"
-" Notes
-"	option: try to preserve last search, cursor position, marks, etc
-"	option: print a summary of changes
-
-function! s:tab_expand (...)
+function! s:tab_expand (...) range
+	echohl error
+	echom 'expand: ' . a:0 a:1
+	echom 'count: ' . v:count v:count1
+	echohl none
 	if (a:0 == 2)
 		let [l:start, l:stop] = [a:1, a:2]
 	else
@@ -27,6 +26,9 @@ function! s:tab_expand (...)
 endfunction
 
 function! s:tab_unexpand (...)
+	echohl error
+	echom 'count: ' . v:count v:count1
+	echohl none
 	if (a:0 == 2)
 		let [l:start, l:stop] = [a:1, a:2]
 	else
@@ -40,20 +42,25 @@ endfunction
 function! s:tabby_mappings()
 	nnoremap <silent> <Plug>TabbyExpandA :<C-U>call <SID>tab_expand (1, line ('$'))<CR>
 	nnoremap <silent> <Plug>TabbyExpandL :<C-U>call <SID>tab_expand (line ('.'), line ('.'))<CR>
+	nnoremap <silent> <Plug>TabbyExpandM :set opfunc=<SID>tab_expand<CR>g@
 	xnoremap <silent> <Plug>TabbyExpandV :<C-U>call <SID>tab_expand (line ('''<'), line ('''>'))<CR>
 
-	nnoremap <silent> <Plug>TabbyUnexpandA :<C-U>call <SID>tab_unexpand (1, line ('$'))<CR>
-	nnoremap <silent> <Plug>TabbyUnexpandL :<C-U>call <SID>tab_unexpand (line ('.'), line ('.'))<CR>
-	xnoremap <silent> <Plug>TabbyUnexpandV :<C-U>call <SID>tab_unexpand (line ('''<'), line ('''>'))<CR>
+	" nnoremap <silent> <Plug>TabbyUnexpandA :<C-U>call <SID>tab_unexpand (1, line ('$'))<CR>
+	" nnoremap <silent> <Plug>TabbyUnexpandL :<C-U>call <SID>tab_unexpand (line ('.'), line ('.'))<CR>
+	" nnoremap <silent> <Plug>TabbyUnexpandM :<C-U>set opfunc=<SID>tab_unexpand<CR>g@
+	" xnoremap <silent> <Plug>TabbyUnexpandV :<C-U>call <SID>tab_unexpand (line ('''<'), line ('''>'))<CR>
 
-	nmap <Leader><S-Tab>      <Plug>TabbyExpandA
-	nmap <Leader><S-Tab><Tab> <Plug>TabbyExpandL
-	xmap <Leader><S-Tab>      <Plug>TabbyExpandV
+	nmap <Leader>f<S-Tab>       <Plug>TabbyExpandA
+	nmap <Leader><S-Tab><S-Tab> <Plug>TabbyExpandL
+	nmap <Leader><S-Tab>        <Plug>TabbyExpandM
+	xmap <Leader><S-Tab>        <Plug>TabbyExpandV
 
-	nmap <Leader><Tab>        <Plug>TabbyUnexpandA
-	nmap <Leader><Tab><Tab>   <Plug>TabbyUnexpandL
-	xmap <Leader><Tab>        <Plug>TabbyUnexpandV
+	nmap <F3> 4,<S-Tab>ip:messages<cr>
 
+	" nmap <Leader>f<Tab>         <Plug>TabbyUnexpandA
+	" nmap <Leader><Tab><Tab>     <Plug>TabbyUnexpandL
+	" nmap <Leader><Tab>          <Plug>TabbyUnexpandM
+	" xmap <Leader><Tab>          <Plug>TabbyUnexpandV
 endfunction
 
 function! s:file_mappings()
@@ -70,7 +77,6 @@ function! s:file_mappings()
 
 		" delete whitespace
 		execute 'nnoremap <leader>' . l:key . '<space>4       :' . l:cmd . '%s/\(\s\\|\%x0d\)\+$//e<cr>'
-		execute 'nnoremap <leader>' . l:key . '<space>6       :' . l:cmd . '%s/^\s\+//e<cr>'
 		execute 'nnoremap <leader>' . l:key . '<space><tab>   :' . l:cmd . '%s/<space>\+<tab>/<tab>/e<cr>'
 
 		" delete lines
@@ -90,7 +96,6 @@ function! s:space_mappings (map, command)
 " LINE
 	" delete whitespace
 	execute 'nnoremap <leader><space>44             :%s/\(\s\\|\%x0d\)\+$//e<cr>'
-	execute 'nnoremap <leader><space>66             :%s/^\s\+//e<cr>'
 	execute 'nnoremap <leader><space><tab><tab>     :%s/<space>\+<tab>/<tab>/e<cr>'
 
 	" delete lines
@@ -104,7 +109,6 @@ function! s:space_mappings (map, command)
 " MOTION
 	" delete whitespace
 	execute 'nnoremap <leader><space>4              :%s/\(\s\\|\%x0d\)\+$//e<cr>'
-	execute 'nnoremap <leader><space>6              :%s/^\s\+//e<cr>'
 	execute 'nnoremap <leader><space><tab>          :%s/<space>\+<tab>/<tab>/e<cr>'
 
 	" delete lines
@@ -118,7 +122,6 @@ function! s:space_mappings (map, command)
 " VISUAL
 	" visual delete whitespace
 	execute 'xnoremap <leader><space>4              :s/\s\+$//e<cr>'
-	execute 'xnoremap <leader><space>6              :s/^\s\+//e<cr>'
 	execute 'xnoremap <leader><space><tab>          :s/<space>\+<tab>/<tab>/e<cr>'
 
 	" visual delete lines
@@ -131,58 +134,81 @@ function! s:space_mappings (map, command)
 endfunction
 
 
-" tidy whitespace
-"	actions:
-"		delete leading space
-"		delete trailing space
-"		delete space errors (space-tab)
-"
-"	work on:
-"		line
-"		visual
-"		motion
-"
-"		file
-"		window
-"		buffer
-"		args
+" call <SID>tabby_mappings()
+" set list
 
-" delete empty lines
-"	actions:
-"		delete empty lines (space-enter)
-"		squash empty lines (space-space)
-"		delete empty lines at top of file (space-g)
-"		delete empty lines at bottom of file (space-G)
-"
-"	work on:
-"		line
-"		visual
-"		motion
-"
-"		file
-"		window
-"		buffer
-"		args
+let s:scope_list = { 'a': 'argdo', 'b': 'bufdo', 'f': '', 'w': 'windo' }
 
-" tabby
-"	actions:
-"		expand tab
-"		unexpand tab
-"
-"	work on:
-"		line
-"		visual
-"		motion
-"
-"		file
-"		window
-"		buffer
-"		args
+function! SpaceLeading (...)
+	if (a:0 == 1)
+		if (a:1 == 'line')
+			" Motion
+			let cmd = "'[,']"
+		else
+			" 1 arg: scope
+			let cmd = s:scope_list[a:1] . ' %'
+		endif
+	else
+		" 2 args: start,stop
+		let cmd = a:start . ',' . a:stop
+	endif
 
-" resize tabs
-"	actions:
-"
-"	use coded count?
-"	48<motion> => tabsize 4 -> tabsize 8
-"	84<motion> => tabsize 8 -> tabsize 4
+	let cmd .= 's/^\s\+//e'
+	execute cmd
+endfunction
+
+function! s:translate (func)
+	execute 'setlocal operatorfunc=' . a:func
+	if (v:count == 0)
+		return 'g@'
+	else
+		return 'g@g@'
+	endif
+endfunction
+
+function! SpaceLeadingMap (...)
+	nnoremap <expr> <Plug>SpaceLeadingM <SID>translate ('SpaceLeading')
+	nnoremap        <Plug>SpaceLeadingL :<C-U>call SpaceLeading (line ('.'),  line ('.'))<CR>
+	xnoremap        <Plug>SpaceLeadingV :<C-U>call SpaceLeading (line ("'<"), line ("'>"))<CR>
+	nnoremap        <Plug>SpaceLeadingA :<C-U>call SpaceLeading ('a')<CR>
+	nnoremap        <Plug>SpaceLeadingB :<C-U>call SpaceLeading ('b')<CR>
+	nnoremap        <Plug>SpaceLeadingF :<C-U>call SpaceLeading ('f')<CR>
+	nnoremap        <Plug>SpaceLeadingW :<C-U>call SpaceLeading ('w')<CR>
+endfunction
+
+function! SpaceTrailing (...)
+endfunction
+
+function! SpaceError (...)
+endfunction
+
+function! SpaceSurround (...)
+endfunction
+
+function! EmptyLinesSqueeze (...)
+endfunction
+
+function! EmptyLinesDelete (...)
+endfunction
+
+function! BlankLinesTop (...)
+endfunction
+
+function! BlankLinesBottom (...)
+endfunction
+
+function! TabsSpaces (...)
+endfunction
+
+function! SpacesTabs (...)
+endfunction
+
+
+nmap <Leader><space>ll  <Plug>SpaceLeadingM
+nmap <Leader><space>l   <Plug>SpaceLeadingL
+xmap <Leader><space>l   <Plug>SpaceLeadingV
+nmap <Leader>a<space>l  <Plug>SpaceLeadingA
+nmap <Leader>b<space>l  <Plug>SpaceLeadingB
+nmap <Leader>f<space>l  <Plug>SpaceLeadingF
+nmap <Leader>w<space>l  <Plug>SpaceLeadingW
 

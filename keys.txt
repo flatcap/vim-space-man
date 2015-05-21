@@ -51,7 +51,7 @@ EMPTY_LINES_DELETE - <enter>d
 	buffer		<leader>b<enter>d
 	args		<leader>a<enter>d
 
-BLANK_LINES_TOP <enter>gg
+BLANK_LINES_TOP - <enter>gg
 	file		<leader>f<enter>gg
 	window		<leader>w<enter>gg
 	buffer		<leader>b<enter>gg
