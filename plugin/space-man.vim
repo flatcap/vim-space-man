@@ -314,6 +314,100 @@ function! s:spaces_tabs_map()
 endfunction
 
 
+function! SpaceSurroundLine (begin, end, count)
+	let curpos = getcurpos()
+
+	let lines = []
+	for i in range (a:count)
+		let lines += ['']
+	endfor
+
+	call append (a:end,       lines)
+	call append (a:begin - 1, lines)
+
+	let curpos[1] += a:count
+	call setpos ('.', curpos)
+endfunction
+
+function! s:space_surround_words (begin, end, count)
+	let curpos = getcurpos()
+	let curpos[2] += a:count
+
+	" echo a:begin
+	" echo a:end
+	" echom a:count
+
+	let space = ''
+	for i in range (a:count)
+		let space .= ' '
+	endfor
+
+	call setpos ('.', a:end)
+	execute 'normal a' . space
+	call setpos ('.', a:begin)
+	execute 'normal i' . space
+
+	call setpos ('.', curpos)
+endfunction
+
+function! s:space_surround_block()
+	let curpos = getcurpos()
+	let curpos[2] += v:count1
+
+	let num = v:count1
+
+	let space = ''
+	for i in range (v:count1)
+		let space .= ' '
+	endfor
+
+	let top = getpos ("'<")
+	let bot = getpos ("'>")
+
+	let cols = bot[2] - top[2] + 1
+
+	let cmd = "'<,'>s/\\%V.\\{" . cols . "}/" . space . '&' . space . '/'
+	execute cmd
+
+	call setpos ('.', curpos)
+endfunction
+
+function! SpaceSurroundVisual (...)
+	let vm = visualmode()
+	if (vm ==# 'V')
+		call SpaceSurroundLine(line ("'<"), line ("'>"), v:count1)
+	elseif (vm ==# 'v')
+		call s:space_surround_words(getpos ("'<"), getpos ("'>"), v:count1)
+	else
+		call s:space_surround_block()
+	endif
+endfunction
+
+function! SpaceSurroundMotion (...)
+	if (a:1 == 'line')
+		call SpaceSurroundLine (line ("'["), line ("']"), 1)
+	elseif (a:1 == 'char')
+		call s:space_surround_words (getpos ("'["), getpos ("']"), 1)
+	else
+		" Ignore block mode
+	endif
+endfunction
+
+function! s:space_surround_map()
+	if (get (g:, 'space_man_enable_space_surround', 1))
+		nnoremap <expr> <Plug>SpaceSurroundM <SID>translate ('SpaceSurroundMotion')
+		nnoremap        <Plug>SpaceSurroundL :<C-U>call SpaceSurroundLine (line ('.'), line ('.'))<CR>
+		xnoremap        <Plug>SpaceSurroundV :<C-U>call SpaceSurroundVisual()<CR>
+
+		if (get (g:, 'space_man_create_mappings_space_surround', 1))
+			nmap <Leader><space>ss <Plug>SpaceSurroundL
+			nmap <Leader><space>s  <Plug>SpaceSurroundM
+			xmap <Leader><space>s  <Plug>SpaceSurroundV
+		endif
+	endif
+endfunction
+
+
 function! TabsSpaces (...)
 	if (a:0 == 1)
 		if (a:1 == 'line')
@@ -359,9 +453,10 @@ call s:blank_lines_bottom_map()
 call s:blank_lines_top_map()
 call s:empty_lines_delete_map()
 call s:empty_lines_squeeze_map()
+call s:spaces_tabs_map()
 call s:space_error_map()
 call s:space_leading_map()
+call s:space_surround_map()
 call s:space_trailing_map()
-call s:spaces_tabs_map()
 call s:tabs_spaces_map()
 
