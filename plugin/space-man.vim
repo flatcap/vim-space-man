@@ -24,7 +24,7 @@ endfunction
 
 function! BlankLinesBottom (scope)
 	let cmd = s:scope_list[a:scope] . ' %'
-	let cmd .= 's/\n\_s\+\%$'
+	let cmd .= 's/\v\n\_s*\%$//e'
 	execute cmd
 endfunction
 
@@ -47,7 +47,7 @@ endfunction
 
 function! BlankLinesTop (scope)
 	let cmd = s:scope_list[a:scope] . ' %'
-	let cmd .= 's/\%^\_s\+\n'
+	let cmd .= 's/\v\%^\_s*\n//e'
 	execute cmd
 endfunction
 
@@ -82,7 +82,7 @@ function! EmptyLinesDelete (...)
 		let cmd = a:1 . ',' . a:2
 	endif
 
-	let cmd .= 'g/^\s*$/de'
+	let cmd .= 'g/\v^\s*$/de'
 	execute cmd
 endfunction
 
@@ -97,13 +97,13 @@ function! s:empty_lines_delete_map()
 		nnoremap        <Plug>EmptyLinesDeleteW :<C-U>call EmptyLinesDelete ('w')<CR>
 
 		if (get (g:, 'space_man_create_mappings_empty_lines_delete', 1))
-			nmap <Leader><enter>dd  <Plug>EmptyLinesDeleteL
-			nmap <Leader><enter>d   <Plug>EmptyLinesDeleteM
-			xmap <Leader><enter>d   <Plug>EmptyLinesDeleteV
-			nmap <Leader>a<enter>d  <Plug>EmptyLinesDeleteA
-			nmap <Leader>b<enter>d  <Plug>EmptyLinesDeleteB
-			nmap <Leader>f<enter>d  <Plug>EmptyLinesDeleteF
-			nmap <Leader>w<enter>d  <Plug>EmptyLinesDeleteW
+			nmap <Leader><enter>dd <Plug>EmptyLinesDeleteL
+			nmap <Leader><enter>d  <Plug>EmptyLinesDeleteM
+			xmap <Leader><enter>d  <Plug>EmptyLinesDeleteV
+			nmap <Leader>a<enter>d <Plug>EmptyLinesDeleteA
+			nmap <Leader>b<enter>d <Plug>EmptyLinesDeleteB
+			nmap <Leader>f<enter>d <Plug>EmptyLinesDeleteF
+			nmap <Leader>w<enter>d <Plug>EmptyLinesDeleteW
 		endif
 	endif
 endfunction
@@ -123,7 +123,7 @@ function! EmptyLinesSqueeze (...)
 		let cmd = a:1 . ',' . a:2
 	endif
 
-	let cmd .= 's/\v\n(\s*\n){2,}//e'
+	let cmd .= 's/\v((^\s*\n){2,}|(\_s*%$))//e'
 	execute cmd
 endfunction
 
@@ -138,13 +138,13 @@ function! s:empty_lines_squeeze_map()
 		nnoremap        <Plug>EmptyLinesSqueezeW :<C-U>call EmptyLinesSqueeze ('w')<CR>
 
 		if (get (g:, 'space_man_create_mappings_empty_lines_squeeze', 1))
-			nmap <Leader><enter>zz  <Plug>EmptyLinesSqueezeL
-			nmap <Leader><enter>z   <Plug>EmptyLinesSqueezeM
-			xmap <Leader><enter>z   <Plug>EmptyLinesSqueezeV
-			nmap <Leader>a<enter>z  <Plug>EmptyLinesSqueezeA
-			nmap <Leader>b<enter>z  <Plug>EmptyLinesSqueezeB
-			nmap <Leader>f<enter>z  <Plug>EmptyLinesSqueezeF
-			nmap <Leader>w<enter>z  <Plug>EmptyLinesSqueezeW
+			nmap <Leader><enter>zz <Plug>EmptyLinesSqueezeL
+			nmap <Leader><enter>z  <Plug>EmptyLinesSqueezeM
+			xmap <Leader><enter>z  <Plug>EmptyLinesSqueezeV
+			nmap <Leader>a<enter>z <Plug>EmptyLinesSqueezeA
+			nmap <Leader>b<enter>z <Plug>EmptyLinesSqueezeB
+			nmap <Leader>f<enter>z <Plug>EmptyLinesSqueezeF
+			nmap <Leader>w<enter>z <Plug>EmptyLinesSqueezeW
 		endif
 	endif
 endfunction
@@ -164,7 +164,7 @@ function! SpaceError (...)
 		let cmd = a:1 . ',' . a:2
 	endif
 
-	let cmd .= 's/<space>\+<tab>/<tab>/e'
+	let cmd .= 's/\v +\t/\t/e'
 	execute cmd
 endfunction
 
@@ -179,13 +179,13 @@ function! s:space_error_map()
 		nnoremap        <Plug>SpaceErrorW :<C-U>call SpaceError ('w')<CR>
 
 		if (get (g:, 'space_man_create_mappings_space_error', 1))
-			nmap <Leader><space>ee  <Plug>SpaceErrorL
-			nmap <Leader><space>e   <Plug>SpaceErrorM
-			xmap <Leader><space>e   <Plug>SpaceErrorV
-			nmap <Leader>a<space>e  <Plug>SpaceErrorA
-			nmap <Leader>b<space>e  <Plug>SpaceErrorB
-			nmap <Leader>f<space>e  <Plug>SpaceErrorF
-			nmap <Leader>w<space>e  <Plug>SpaceErrorW
+			nmap <Leader><space>ee <Plug>SpaceErrorL
+			nmap <Leader><space>e  <Plug>SpaceErrorM
+			xmap <Leader><space>e  <Plug>SpaceErrorV
+			nmap <Leader>a<space>e <Plug>SpaceErrorA
+			nmap <Leader>b<space>e <Plug>SpaceErrorB
+			nmap <Leader>f<space>e <Plug>SpaceErrorF
+			nmap <Leader>w<space>e <Plug>SpaceErrorW
 		endif
 	endif
 endfunction
@@ -205,7 +205,7 @@ function! SpaceLeading (...)
 		let cmd = a:1 . ',' . a:2
 	endif
 
-	let cmd .= 's/^\s\+//e'
+	let cmd .= 's/\v^\s+//e'
 	execute cmd
 endfunction
 
@@ -220,13 +220,13 @@ function! s:space_leading_map()
 		nnoremap        <Plug>SpaceLeadingW :<C-U>call SpaceLeading ('w')<CR>
 
 		if (get (g:, 'space_man_create_mappings_space_leading', 1))
-			nmap <Leader><space>ll  <Plug>SpaceLeadingL
-			nmap <Leader><space>l   <Plug>SpaceLeadingM
-			xmap <Leader><space>l   <Plug>SpaceLeadingV
-			nmap <Leader>a<space>l  <Plug>SpaceLeadingA
-			nmap <Leader>b<space>l  <Plug>SpaceLeadingB
-			nmap <Leader>f<space>l  <Plug>SpaceLeadingF
-			nmap <Leader>w<space>l  <Plug>SpaceLeadingW
+			nmap <Leader><space>ll <Plug>SpaceLeadingL
+			nmap <Leader><space>l  <Plug>SpaceLeadingM
+			xmap <Leader><space>l  <Plug>SpaceLeadingV
+			nmap <Leader>a<space>l <Plug>SpaceLeadingA
+			nmap <Leader>b<space>l <Plug>SpaceLeadingB
+			nmap <Leader>f<space>l <Plug>SpaceLeadingF
+			nmap <Leader>w<space>l <Plug>SpaceLeadingW
 		endif
 	endif
 endfunction
@@ -246,7 +246,7 @@ function! SpaceTrailing (...)
 		let cmd = a:1 . ',' . a:2
 	endif
 
-	let cmd .= 's/\(\s\\|\%x0d\)\+$//e'
+	let cmd .= 's/\v(\s|%x0d)+$//e'
 	execute cmd
 endfunction
 
@@ -261,13 +261,13 @@ function! s:space_trailing_map()
 		nnoremap        <Plug>SpaceTrailingW :<C-U>call SpaceTrailing ('w')<CR>
 
 		if (get (g:, 'space_man_create_mappings_space_trailing', 1))
-			nmap <Leader><space>tt  <Plug>SpaceTrailingL
-			nmap <Leader><space>t   <Plug>SpaceTrailingM
-			xmap <Leader><space>t   <Plug>SpaceTrailingV
-			nmap <Leader>a<space>t  <Plug>SpaceTrailingA
-			nmap <Leader>b<space>t  <Plug>SpaceTrailingB
-			nmap <Leader>f<space>t  <Plug>SpaceTrailingF
-			nmap <Leader>w<space>t  <Plug>SpaceTrailingW
+			nmap <Leader><space>tt <Plug>SpaceTrailingL
+			nmap <Leader><space>t  <Plug>SpaceTrailingM
+			xmap <Leader><space>t  <Plug>SpaceTrailingV
+			nmap <Leader>a<space>t <Plug>SpaceTrailingA
+			nmap <Leader>b<space>t <Plug>SpaceTrailingB
+			nmap <Leader>f<space>t <Plug>SpaceTrailingF
+			nmap <Leader>w<space>t <Plug>SpaceTrailingW
 		endif
 	endif
 endfunction

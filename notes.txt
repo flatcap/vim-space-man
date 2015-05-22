@@ -1,61 +1,9 @@
-wrap up all the space manipulating
-
-Notes
-option: try to preserve last search, cursor position, marks, etc
-option: print a summary of changes
-
-tidy whitespace
-actions:
-	delete leading space
-	delete trailing space
-	delete space errors (space-tab)
-
-work on:
-	line
-	visual
-	motion
-
-	file
-	window
-	buffer
-	args
-
-delete empty lines
-actions:
-	delete empty lines (space-enter)
-	squash empty lines (space-space)
-	delete empty lines at top of file (space-g)
-	delete empty lines at bottom of file (space-G)
-
-work on:
-	line
-	visual
-	motion
-
-	file
-	window
-	buffer
-	args
-
-tabby
-actions:
-	expand tab
-	unexpand tab
-
-work on:
-	line
-	visual
-	motion
-
-	file
-	window
-	buffer
-	args
+options
+	try to preserve last search, cursor position, marks, etc
+	print a summary of changes
 
 resize tabs
-actions:
-
-use coded count?
-48<motion> => tabsize 4 -> tabsize 8
-84<motion> => tabsize 8 -> tabsize 4
+	use coded count?
+	48<motion> => tabsize 4 -> tabsize 8
+	84<motion> => tabsize 8 -> tabsize 4
 
