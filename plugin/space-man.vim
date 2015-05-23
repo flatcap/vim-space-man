@@ -287,7 +287,7 @@ function! SpacesTabs (...)
 		let cmd = a:1 . ',' . a:2
 	endif
 
-	let cmd .= '!unexpand --tabs ' . v:count1 . ' --first-only'
+	let cmd .= '!unexpand --first-only --tabs ' . v:count1
 	execute cmd
 endfunction
 
