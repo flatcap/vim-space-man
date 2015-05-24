@@ -1,0 +1,81 @@
+*convert-spaces-to-tabs.txt*  Replace leading spaces with tabs in a file
+
+Author:  Richard Russon (flatcap) <rich@flatcap.org>
+
+License: GPLv3 <http://fsf.org/>
+
+This plugin is only available if 'compatible' is not set.
+It is part of the |space-man| plugin.
+
+INTRODUCTION                                          *convert-spaces-to-tabs*
+
+'convert-spaces-to-tabs' replaces any leading spaces with tabs.
+The number of spaces to tabs is controlled by a repeat count.
+
+MAPPINGS                                     *convert-spaces-to-tabs-mappings*
+
+'convert-spaces-to-tabs' creates a set of <Plug> mappings.
+The local mappings work on a Line, Motion or Visual region
+The file mappings work on the entire File, all Args, all Buffers or all Windows.
+
+Plugin mappings:
+
+  Line    <plug>SpacesTabsL
+  Motion  <plug>SpacesTabsM
+  Visual  <plug>SpacesTabsV
+  Args    <plug>SpacesTabsA
+  Buffers <plug>SpacesTabsB
+  File    <plug>SpacesTabsF
+  Window  <plug>SpacesTabsW
+
+Default user mappings:
+
+  Line    <leader><space><tab><tab>
+  Motion  <leader><space><tab>
+  Visual  <leader><space><tab>
+  Args    <leader>a<space><tab>
+  Buffers <leader>b<space><tab>
+  File    <leader>f<space><tab>
+  Window  <leader>w<space><tab>
+
+EXAMPLES                                     *convert-spaces-to-tabs-examples*
+
+These examples assume the <Leader> is set to its default value of
+\ (backslash) and the plugin is using its default user mappings.
+
+  Type this...       | Work on | To convert spaces to tabs from
+  ------------------ | ------- | ------------------------------
+  \<space><tab>9j    | Motion  | 10 lines down
+  \<space><tab>G     | Motion  | cursor to end of file
+  \<space><tab>gg    | Motion  | cursor to top of file
+  \<space><tab>ip    | Motion  | this paragraph
+
+  V9j\<space><tab>   | Visual  | 10 lines down
+  \<space><tab><tab> | Line    | This line only
+
+  \a<space><tab>     | Args    | All lines in all arguments
+  \b<space><tab>     | Buffers | All lines in all buffers
+  \f<space><tab>     | File    | All lines in this file
+  \w<space><tab>     | windows | All lines in all windows
+
+CONFIGURATION                                  *convert-spaces-to-tabs-config*
+
+'convert-spaces-to-tabs' is controlled by two global variables which both default to 1 (true).
+The first to enable the function, the second to create default user mappings.
+>
+  let g:space_man_enable_empty_lines_delete          = 1
+  let g:space_man_create_mappings_empty_lines_delete = 1
+<
+
+LICENSE                                       *convert-spaces-to-tabs-license*
+
+Copyright (c) Richard Russon (flatcap).
+Distributed under the GPLv3 <http://fsf.org/>
+
+ABOUT                                           *convert-spaces-to-tabs-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/flatcap/vim-space-man
+
+ vim:tw=78:ts=2:sw=2:et:ft=help:norl:

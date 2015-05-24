@@ -1,0 +1,66 @@
+*delete-bottom-blank-lines.txt*  Delete blank lines from the bottom of a file
+
+Author:  Richard Russon (flatcap) <rich@flatcap.org>
+
+License: GPLv3 <http://fsf.org/>
+
+This plugin is only available if 'compatible' is not set.
+It is part of the |space-man| plugin.
+
+INTRODUCTION                                       *delete-bottom-blank-lines*
+
+'delete-bottom-blank-lines' deletes any blank lines from the bottom of a file.
+That is lines with zero characters, or lines containing only spaces and tabs.
+
+MAPPINGS                                  *delete-bottom-blank-lines-mappings*
+
+'delete-bottom-blank-lines' creates a set of <Plug> mappings.
+The file mappings work on the entire File, all Args, Buffers or Windows.
+
+Plugin mappings:
+
+  Args    <plug>BlankLinesBottomA
+  Buffers <plug>BlankLinesBottomB
+  File    <plug>BlankLinesBottomF
+  Window  <plug>BlankLinesBottomW
+
+Default user mappings:
+
+  Args    <leader>a<enter>G
+  Buffers <leader>b<enter>G
+  File    <leader>f<enter>G
+  Window  <leader>w<enter>G
+
+EXAMPLES                                  *delete-bottom-blank-lines-examples*
+
+These examples assume the <Leader> is set to its default value of
+\ (backslash) and the plugin is using its default user mappings.
+
+  Type this... | Work on | To delete blank lines from the bottom of
+  ------------ | ------- | ----------------------------------------
+  \a<enter>G   | Args    | All arguments
+  \b<enter>G   | Buffers | All buffers
+  \f<enter>G   | File    | This file
+  \w<enter>G   | windows | All windows
+
+CONFIGURATION                               *delete-bottom-blank-lines-config*
+
+'delete-bottom-blank-lines' is controlled by two global variables which both default to 1 (true).
+The first to enable the function, the second to create default user mappings.
+>
+  let g:space_man_enable_empty_lines_delete          = 1
+  let g:space_man_create_mappings_empty_lines_delete = 1
+<
+
+LICENSE                                    *delete-bottom-blank-lines-license*
+
+Copyright (c) Richard Russon (flatcap).
+Distributed under the GPLv3 <http://fsf.org/>
+
+ABOUT                                        *delete-bottom-blank-lines-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/flatcap/vim-space-man
+
+ vim:tw=78:ts=2:sw=2:et:ft=help:norl:

@@ -1,0 +1,81 @@
+*delete-leading-space.txt*  Delete leading whitespace in a file
+
+Author:  Richard Russon (flatcap) <rich@flatcap.org>
+
+License: GPLv3 <http://fsf.org/>
+
+This plugin is only available if 'compatible' is not set.
+It is part of the |space-man| plugin.
+
+INTRODUCTION                                            *delete-leading-space*
+
+'delete-leading-space' will remove any leading whitespace.
+That is space, or tab, characters at the beginning of lines.
+
+MAPPINGS                                       *delete-leading-space-mappings*
+
+'delete-leading-space' creates a set of <Plug> mappings.
+The local mappings work on a Line, Motion or Visual region
+The file mappings work on the entire File, all Args, Buffers or Windows.
+
+Plugin mappings:
+
+  Line    <plug>SpaceLeadingL
+  Motion  <plug>SpaceLeadingM
+  Visual  <plug>SpaceLeadingV
+  Args    <plug>SpaceLeadingA
+  Buffers <plug>SpaceLeadingB
+  File    <plug>SpaceLeadingF
+  Window  <plug>SpaceLeadingW
+
+Default user mappings:
+
+  Line    <leader><space>ll
+  Motion  <leader><space>l
+  Visual  <leader><space>l
+  Args    <leader>a<space>l
+  Buffers <leader>b<space>l
+  File    <leader>f<space>l
+  Window  <leader>w<space>l
+
+EXAMPLES                                       *delete-leading-space-examples*
+
+These examples assume the <Leader> is set to its default value of
+\ (backslash) and the plugin is using its default user mappings.
+
+  Type this... | Work on | To remove leading space from
+  ------------ | ------- | -----------------------------
+  \<space>l9j  | Motion  | 10 lines down
+  \<space>lG   | Motion  | cursor to end of file
+  \<space>lgg  | Motion  | cursor to top of file
+  \<space>lip  | Motion  | this paragraph
+
+  V9j\<space>l | Visual  | 10 lines down
+  \<space>ll   | Line    | This line only
+
+  \a<space>l   | Args    | All lines in all arguments
+  \b<space>l   | Buffers | All lines in all buffers
+  \f<space>l   | File    | All lines in this file
+  \w<space>l   | windows | All lines in all windows
+
+CONFIGURATION                                    *delete-leading-space-config*
+
+'delete-leading-space' is controlled by two global variables which both default to 1 (true).
+The first to enable the function, the second to create default user mappings.
+>
+  let g:space_man_enable_space_leading          = 1
+  let g:space_man_create_mappings_space_leading = 1
+<
+
+LICENSE                                         *delete-leading-space-license*
+
+Copyright (c) Richard Russon (flatcap).
+Distributed under the GPLv3 <http://fsf.org/>
+
+ABOUT                                             *delete-leading-space-about*
+
+Grab the latest version or report a bug on GitHub:
+
+  http://github.com/flatcap/vim-space-man
+
+ vim:tw=78:ts=2:sw=2:et:ft=help:norl:

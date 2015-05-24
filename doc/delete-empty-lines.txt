@@ -1,0 +1,82 @@
+*delete-empty-lines.txt*  Delete empty lines in a file
+
+Author:  Richard Russon (flatcap) <rich@flatcap.org>
+
+License: GPLv3 <http://fsf.org/>
+
+This plugin is only available if 'compatible' is not set.
+It is part of the |space-man| plugin.
+
+INTRODUCTION                                              *delete-empty-lines*
+
+'delete-empty-lines' will delete any empty lines in a file.
+That is lines with zero characters, or lines containing only spaces and tabs.
+
+MAPPINGS                                         *delete-empty-lines-mappings*
+
+'delete-empty-lines' creates a set of <Plug> mappings.
+The local mappings work on a Line, Motion or Visual region
+The file mappings work on the entire File, all Args, Buffers or Windows.
+
+Plugin mappings:
+
+  Line    <plug>DeleteEmptyL
+  Motion  <plug>DeleteEmptyM
+  Visual  <plug>DeleteEmptyV
+  Args    <plug>DeleteEmptyA
+  Buffers <plug>DeleteEmptyB
+  File    <plug>DeleteEmptyF
+  Window  <plug>DeleteEmptyW
+
+Default user mappings:
+
+  Line    <leader><enter>dd
+  Motion  <leader><enter>d
+  Visual  <leader><enter>d
+  Args    <leader>a<enter>d
+  Buffers <leader>b<enter>d
+  File    <leader>f<enter>d
+  Window  <leader>w<enter>d
+
+EXAMPLES                                         *delete-empty-lines-examples*
+
+These examples assume the <Leader> is set to its default value of
+\ (backslash) and the plugin is using its default user mappings.
+
+  Type this... | Work on | To delete empty lines from
+  ------------ | ------- | -----------------------------
+  \<space>l9j  | Motion  | 10 lines down
+  \<space>lG   | Motion  | cursor to end of file
+  \<space>lgg  | Motion  | cursor to top of file
+  \<space>lip  | Motion  | this paragraph
+
+  V9j\<space>l | Visual  | 10 lines down
+  \<space>ll   | Line    | This line only
+
+  \a<space>l   | Args    | All lines in all arguments
+  \b<space>l   | Buffers | All lines in all buffers
+  \f<space>l   | File    | All lines in this file
+  \w<space>l   | windows | All lines in all windows
+
+CONFIGURATION                                      *delete-empty-lines-config*
+
+Each function is controlled by two global variables which both default to 1 (true).
+The first to enable the function, the second to create default user mappings.
+e.g.  For EmptyLinesDelete,
+>
+  let g:space_man_enable_empty_lines_delete          = 1
+  let g:space_man_create_mappings_empty_lines_delete = 1
+<
+
+LICENSE                                           *delete-empty-lines-license*
+
+Copyright (c) Richard Russon (flatcap).
+Distributed under the GPLv3 <http://fsf.org/>
+
+ABOUT                                               *delete-empty-lines-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/flatcap/vim-space-man
+
+ vim:tw=78:ts=2:sw=2:et:ft=help:norl:

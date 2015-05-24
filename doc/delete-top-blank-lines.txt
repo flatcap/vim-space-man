@@ -1,0 +1,66 @@
+*delete-top-blank-lines.txt*  Delete blanks lines from the top of a file
+
+Author:  Richard Russon (flatcap) <rich@flatcap.org>
+
+License: GPLv3 <http://fsf.org/>
+
+This plugin is only available if 'compatible' is not set.
+It is part of the |space-man| plugin.
+
+INTRODUCTION                                          *delete-top-blank-lines*
+
+'delete-top-blank-lines' deletes any blank lines from the top of a file.
+That is lines with zero characters, or lines containing only spaces and tabs.
+
+MAPPINGS                                     *delete-top-blank-lines-mappings*
+
+'delete-top-blank-lines' creates a set of <Plug> mappings.
+The file mappings work on the entire File, all Args, Buffers or Windows.
+
+Plugin mappings:
+
+  Args    <plug>BlankLinesTopA
+  Buffers <plug>BlankLinesTopB
+  File    <plug>BlankLinesTopF
+  Window  <plug>BlankLinesTopW
+
+Default user mappings:
+
+  Args    <leader>a<enter>gg
+  Buffers <leader>b<enter>gg
+  File    <leader>f<enter>gg
+  Window  <leader>w<enter>gg
+
+EXAMPLES                                     *delete-top-blank-lines-examples*
+
+These examples assume the <Leader> is set to its default value of
+\ (backslash) and the plugin is using its default user mappings.
+
+  Type this... | Work on | To delete blank lines from the top of
+  ------------ | ------- | -------------------------------------
+  \a<enter>gg  | Args    | All arguments
+  \b<enter>gg  | Buffers | All buffers
+  \f<enter>gg  | File    | This file
+  \w<enter>gg  | windows | All windows
+
+CONFIGURATION                                  *delete-top-blank-lines-config*
+
+'delete-top-blank-lines' is controlled by two global variables which both default to 1 (true).
+The first to enable the function, the second to create default user mappings.
+>
+  let g:space_man_enable_empty_lines_delete          = 1
+  let g:space_man_create_mappings_empty_lines_delete = 1
+<
+
+LICENSE                                       *delete-top-blank-lines-license*
+
+Copyright (c) Richard Russon (flatcap).
+Distributed under the GPLv3 <http://fsf.org/>
+
+ABOUT                                           *delete-top-blank-lines-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/flatcap/vim-space-man
+
+ vim:tw=78:ts=2:sw=2:et:ft=help:norl:
