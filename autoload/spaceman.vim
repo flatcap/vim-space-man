@@ -1,21 +1,18 @@
 let s:scope_list = { 'a': 'argdo', 'b': 'bufdo', 'f': '', 'w': 'windo' }
 
 function! spaceman#BlankLinesTop (scope)
-	echom 'spaceman#BlankLinesTop'
 	let cmd = s:scope_list[a:scope] . ' %'
 	let cmd .= 's/\v\%^\_s*\n//e'
 	execute cmd
 endfunction
 
 function! spaceman#BlankLinesBottom (scope)
-	echom 'spaceman#BlankLinesBottom'
 	let cmd = s:scope_list[a:scope] . ' %'
 	let cmd .= 's/\v\n\_s*\%$//e'
 	execute cmd
 endfunction
 
 function! spaceman#EmptyLinesDelete (...)
-	echom 'spaceman#EmptyLinesDelete'
 	if (a:0 == 1)
 		if (a:1 == 'line')
 			" Motion
@@ -34,7 +31,6 @@ function! spaceman#EmptyLinesDelete (...)
 endfunction
 
 function! spaceman#EmptyLinesSqueeze (...)
-	echom 'spaceman#EmptyLinesSqueeze'
 	if (a:0 == 1)
 		if (a:1 == 'line')
 			" Motion
@@ -53,7 +49,6 @@ function! spaceman#EmptyLinesSqueeze (...)
 endfunction
 
 function! spaceman#SpaceError (...)
-	echom 'spaceman#SpaceError'
 	if (a:0 == 1)
 		if (a:1 == 'line')
 			" Motion
@@ -72,7 +67,6 @@ function! spaceman#SpaceError (...)
 endfunction
 
 function! spaceman#SpaceLeading (...)
-	echom 'spaceman#SpaceLeading'
 	if (a:0 == 1)
 		if (a:1 == 'line')
 			" Motion
@@ -91,7 +85,6 @@ function! spaceman#SpaceLeading (...)
 endfunction
 
 function! spaceman#SpaceTrailing (...)
-	echom 'spaceman#SpaceTrailing'
 	if (a:0 == 1)
 		if (a:1 == 'line')
 			" Motion
@@ -110,7 +103,6 @@ function! spaceman#SpaceTrailing (...)
 endfunction
 
 function! spaceman#SpacesTabs (...)
-	echom 'spaceman#SpacesTabs'
 	if (a:0 == 1)
 		if (a:1 == 'line')
 			" Motion
@@ -129,7 +121,6 @@ function! spaceman#SpacesTabs (...)
 endfunction
 
 function! spaceman#TabsSpaces (...)
-	echom 'spaceman#TabsSpaces'
 	if (a:0 == 1)
 		if (a:1 == 'line')
 			" Motion
@@ -191,7 +182,6 @@ function! s:space_surround_block()
 endfunction
 
 function! spaceman#SpaceSurroundLine (begin, end, count)
-	echom 'spaceman#SpaceSurroundLine'
 	let curpos = getcurpos()
 
 	let lines = []
@@ -207,10 +197,9 @@ function! spaceman#SpaceSurroundLine (begin, end, count)
 endfunction
 
 function! spaceman#SpaceSurroundVisual (...)
-	echom 'spaceman#SpaceSurroundVisual'
 	let vm = visualmode()
 	if (vm ==# 'V')
-		call SpaceSurroundLine(line ("'<"), line ("'>"), v:count1)
+		call spaceman#SpaceSurroundLine(line ("'<"), line ("'>"), v:count1)
 	elseif (vm ==# 'v')
 		call s:space_surround_words(getpos ("'<"), getpos ("'>"), v:count1)
 	else
@@ -219,9 +208,8 @@ function! spaceman#SpaceSurroundVisual (...)
 endfunction
 
 function! spaceman#SpaceSurroundMotion (...)
-	echom 'spaceman#SpaceSurroundMotion'
 	if (a:1 == 'line')
-		call SpaceSurroundLine (line ("'["), line ("']"), 1)
+		call spaceman#SpaceSurroundLine (line ("'["), line ("']"), 1)
 	elseif (a:1 == 'char')
 		call s:space_surround_words (getpos ("'["), getpos ("']"), 1)
 	else
