@@ -1,7 +1,4 @@
-repeat not meaningful
-count/motion
-
-SPACE_LEADING - <space>l
+DELETE_LEADING_SPACE - <space>l
 	line		<leader><space>ll
 	visual		<leader><space>l
 	motion		<leader><space>l{motion}
@@ -10,7 +7,7 @@ SPACE_LEADING - <space>l
 	buffer		<leader>b<space>l
 	args		<leader>a<space>l
 
-SPACE_TRAILING - <space>t
+DELETE_TRAILING_SPACE - <space>t
 	line		<leader><space>tt
 	visual		<leader><space>t
 	motion		<leader><space>t{motion}
@@ -19,7 +16,7 @@ SPACE_TRAILING - <space>t
 	buffer		<leader>b<space>t
 	args		<leader>a<space>t
 
-SPACE_ERROR - <space>e
+DELETE_SPACE_ERROR - <space>e
 	line		<leader><space>ee
 	visual		<leader><space>e
 	motion		<leader><space>e{motion}
@@ -28,12 +25,7 @@ SPACE_ERROR - <space>e
 	buffer		<leader>b<space>e
 	args		<leader>a<space>e
 
-SPACE_SURROUND - <space>s
-	line		<leader><space>ss
-	visual		<leader><space>s
-	motion		<leader><space>s{motion}
-
-EMPTY_LINES_SQUEEZE - <enter>z
+SQUEEZE_EMPTY_LINES - <enter>z
 	line		<leader><enter>zz
 	visual		<leader><enter>z
 	motion		<leader><enter>z{motion}
@@ -42,7 +34,7 @@ EMPTY_LINES_SQUEEZE - <enter>z
 	buffer		<leader>b<enter>z
 	args		<leader>a<enter>z
 
-EMPTY_LINES_DELETE - <enter>d
+DELETE_EMPTY_LINES - <enter>d
 	line		<leader><enter>dd
 	visual		<leader><enter>d
 	motion		<leader><enter>d{motion}
@@ -51,19 +43,19 @@ EMPTY_LINES_DELETE - <enter>d
 	buffer		<leader>b<enter>d
 	args		<leader>a<enter>d
 
-BLANK_LINES_TOP - <enter>gg
+DELETE_TOP_BLANK_LINES - <enter>gg
 	file		<leader>f<enter>gg
 	window		<leader>w<enter>gg
 	buffer		<leader>b<enter>gg
 	args		<leader>a<enter>gg
 
-BLANK_LINES_BOTTOM - <enter>G
+DELETE_BOTTOM_BLANK_LINES - <enter>G
 	file		<leader>f<enter>G
 	window		<leader>w<enter>G
 	buffer		<leader>b<enter>G
 	args		<leader>a<enter>G
 
-TABS_SPACES - <tab><space>
+CONVERT_TABS_TO_SPACES - <tab><space>
 	line		<count><leader><tab><space><space>
 	visual		<count><leader><tab><space>
 	motion		<count><leader><tab><space>{motion}
@@ -72,7 +64,7 @@ TABS_SPACES - <tab><space>
 	buffer		<count><leader>b<tab><space>
 	args		<count><leader>a<tab><space>
 
-SPACES_TABS - <space><tab>
+CONVERT_SPACES_TO_TABS - <space><tab>
 	line		<count><leader><space><tab><tab>
 	visual		<count><leader><space><tab>
 	motion		<count><leader><space><tab>{motion}
@@ -81,4 +73,8 @@ SPACES_TABS - <space><tab>
 	buffer		<count><leader>b<space><tab>
 	args		<count><leader>a<space><tab>
 
+SURROUND_WITH_SPACE - <space>s
+	line		<leader><space>ss
+	visual		<leader><space>s
+	motion		<leader><space>s{motion}
 

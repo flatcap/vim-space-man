@@ -2,8 +2,8 @@ options
 	try to preserve last search, cursor position, marks, etc
 	print a summary of changes
 
-resize tabs
-	use coded count?
-	48<motion> => tabsize 4 -> tabsize 8
-	84<motion> => tabsize 8 -> tabsize 4
+split into ten plugins?
+split docs into ten?
+
+add ranged command for each
 
