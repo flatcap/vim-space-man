@@ -62,13 +62,44 @@ The window mappings begin with &lt;Leader&gt;w
 | Tabs Spaces         | &lt;tab&gt;&lt;space&gt;&lt;space&gt; | &lt;tab&gt;&lt;space&gt; | &lt;tab&gt;&lt;space&gt; | a&lt;tab&gt;&lt;space&gt; | b&lt;tab&gt;&lt;space&gt; | f&lt;tab&gt;&lt;space&gt; | w&lt;tab&gt;&lt;space&gt; |
 | Space Surround      | &lt;space&gt;ss                       | &lt;space&gt;s           | &lt;space&gt;s           |                           |                           |                           |                           |
 
-## Repeat Counts
-
 ## Examples
+
+These examples assume the &lt;Leader&gt; is set to its default value of \ (backslash)
+and the plugin is using its default user mappings.
+
+| Function            | Type this...                 | Acts on                                                |
+| ------------------- | ---------------------------- | ------------------------------------------------------ |
+| Blank Lines Top     | \f&lt;enter&gt;gg            | This file                                              |
+| Blank Lines Top     | \w&lt;enter&gt;gg            | All windows                                            |
+| Blank Lines Bottom  | \b&lt;enter&gt;G             | All buffers                                            |
+| Blank Lines Bottom  | \a&lt;anter&gt;G             | All args                                               |
+| Empty Lines Delete  | V10j\&lt;enter&gt;d          | Visual - 10 lines down                                 |
+| Empty Lines Delete  | \&lt;enter&gt;d10j           | Motion - 10 lines down                                 |
+| Empty Lines Squeeze | \&lt;enter&gt;zG             | Motion - from cursor to end of file                    |
+| Empty Lines Squeeze | \f&lt;enter&gt;z             | This file                                              |
+| Space Error         | \&lt;space&gt;ee             | Line                                                   |
+| Space Error         | \a&lt;space&gt;e             | All args                                               |
+| Space Leading       | \b&lt;space&gt;l             | All buffers                                            |
+| Space Leading       | \&lt;space&gt;lip            | Motion - this paragraph                                |
+| Space Trailing      | \&lt;space&gt;tt             | Line                                                   |
+| Space Trailing      | \w&lt;space&gt;t             | All windows                                            |
+| Spaces Tabs         | 4\f&lt;space&gt;&lt;tab&gt;  | This file - convert this file - 4 spaces to tabs       |
+| Spaces Tabs         | 8\&lt;space&gt;&lt;tab&gt;ip | Motion - convert this paragraph - 8 space to tab       |
+| Tabs Spaces         | 2\a&lt;tab&gt;&lt;space&gt;  | All args - convert all args - tabs to 2 spaces         |
+| Tabs Spaces         | 4\&lt;tab&gt;&lt;space&gt;gg | Motion - from cursor to top of file - tabs to 4 spaces |
+| Space Surround      | 2\&lt;space&gt;ss            | Line - wrap 2 empty lines around this one              |
+| Space Surround      | vee\&lt;space&gt;s           | Visual - wrap space around 2 words                     |
+| Space Surround      | ^V3j4l\&lt;space&gt;s        | Visual - wrap space around 5x4 block of characters     |
 
 ## Configuration
 
-Each function is controlled by two global variables.
+To completely disable this plugin, add the following to your `.vimrc`
+
+```viml
+let g:loaded_space_man = 1
+```
+
+Each function is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
 e.g.  For EmptyLinesDelete,
 
@@ -92,8 +123,6 @@ Here's the full list
 | Tabs Spaces         | g:space_man_enable_tabs_spaces         | g:space_man_create_mappings_tabs_spaces         |
 | Space Surround      | g:space_man_enable_space_surround      | g:space_man_create_mappings_space_surround      |
 
-## Examples
-
 ## License
 
 Copyright &copy; Richard Russon (flatcap).
@@ -103,6 +132,4 @@ Distributed under the GPLv3 <http://fsf.org/>
 
 - [flatcap.org](https://flatcap.org)
 - [GitHub](https://github.com/flatcap/vim-space-man)
-
-## Examples
 
