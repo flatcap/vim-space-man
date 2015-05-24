@@ -43,11 +43,11 @@ List of all &lt;Plug&gt; mappings:
 | TabsSpacesL        | TabsSpacesM        | TabsSpacesV        | TabsSpacesA        | TabsSpacesB        | TabsSpacesF        | TabsSpacesW        |
 | SpaceSurroundL     | SpaceSurroundM     | SpaceSurroundV     |                    |                    |                    |                    |
 
-The keyboard mappings begin with &lt;Leader&gt;
-The args mappings begin with &lt;Leader&gt;a
-The buffer mappings begin with &lt;Leader&gt;b
-The file mappings begin with &lt;Leader&gt;f
-The window mappings begin with &lt;Leader&gt;w
+- The keyboard mappings begin with &lt;Leader&gt;
+- The args mappings begin with &lt;Leader&gt;a
+- The buffer mappings begin with &lt;Leader&gt;b
+- The file mappings begin with &lt;Leader&gt;f
+- The window mappings begin with &lt;Leader&gt;w
 
 | Function            | Line                                  | Motion                   | Visual                   | Args                      | Buffers                   | File                      | Window                    |
 | ------------------- | ------------------------------------- | ------------------------ | ------------------------ | ------------------------- | ------------------------- | ------------------------- | ------------------------- |
@@ -67,29 +67,29 @@ The window mappings begin with &lt;Leader&gt;w
 These examples assume the &lt;Leader&gt; is set to its default value of \ (backslash)
 and the plugin is using its default user mappings.
 
-| Function            | Type this...                 | Acts on                                                |
-| ------------------- | ---------------------------- | ------------------------------------------------------ |
-| Blank Lines Top     | \f&lt;enter&gt;gg            | This file                                              |
-| Blank Lines Top     | \w&lt;enter&gt;gg            | All windows                                            |
-| Blank Lines Bottom  | \b&lt;enter&gt;G             | All buffers                                            |
-| Blank Lines Bottom  | \a&lt;anter&gt;G             | All args                                               |
-| Empty Lines Delete  | V10j\&lt;enter&gt;d          | Visual - 10 lines down                                 |
-| Empty Lines Delete  | \&lt;enter&gt;d10j           | Motion - 10 lines down                                 |
-| Empty Lines Squeeze | \&lt;enter&gt;zG             | Motion - from cursor to end of file                    |
-| Empty Lines Squeeze | \f&lt;enter&gt;z             | This file                                              |
-| Space Error         | \&lt;space&gt;ee             | Line                                                   |
-| Space Error         | \a&lt;space&gt;e             | All args                                               |
-| Space Leading       | \b&lt;space&gt;l             | All buffers                                            |
-| Space Leading       | \&lt;space&gt;lip            | Motion - this paragraph                                |
-| Space Trailing      | \&lt;space&gt;tt             | Line                                                   |
-| Space Trailing      | \w&lt;space&gt;t             | All windows                                            |
-| Spaces Tabs         | 4\f&lt;space&gt;&lt;tab&gt;  | This file - convert this file - 4 spaces to tabs       |
-| Spaces Tabs         | 8\&lt;space&gt;&lt;tab&gt;ip | Motion - convert this paragraph - 8 space to tab       |
-| Tabs Spaces         | 2\a&lt;tab&gt;&lt;space&gt;  | All args - convert all args - tabs to 2 spaces         |
-| Tabs Spaces         | 4\&lt;tab&gt;&lt;space&gt;gg | Motion - from cursor to top of file - tabs to 4 spaces |
-| Space Surround      | 2\&lt;space&gt;ss            | Line - wrap 2 empty lines around this one              |
-| Space Surround      | vee\&lt;space&gt;s           | Visual - wrap space around 2 words                     |
-| Space Surround      | ^V3j4l\&lt;space&gt;s        | Visual - wrap space around 5x4 block of characters     |
+| Function            | Type this...                  | Acts on                                                |
+| ------------------- | ----------------------------- | ------------------------------------------------------ |
+| Blank Lines Top     | \f&lt;enter&gt;gg             | This file                                              |
+| Blank Lines Top     | \w&lt;enter&gt;gg             | All windows                                            |
+| Blank Lines Bottom  | \b&lt;enter&gt;G              | All buffers                                            |
+| Blank Lines Bottom  | \a&lt;anter&gt;G              | All args                                               |
+| Empty Lines Delete  | V10j\\&lt;enter&gt;d          | Visual - 10 lines down                                 |
+| Empty Lines Delete  | \\&lt;enter&gt;d10j           | Motion - 10 lines down                                 |
+| Empty Lines Squeeze | \\&lt;enter&gt;zG             | Motion - from cursor to end of file                    |
+| Empty Lines Squeeze | \f&lt;enter&gt;z              | This file                                              |
+| Space Error         | \\&lt;space&gt;ee             | Line                                                   |
+| Space Error         | \a&lt;space&gt;e              | All args                                               |
+| Space Leading       | \b&lt;space&gt;l              | All buffers                                            |
+| Space Leading       | \\&lt;space&gt;lip            | Motion - this paragraph                                |
+| Space Trailing      | \\&lt;space&gt;tt             | Line                                                   |
+| Space Trailing      | \w&lt;space&gt;t              | All windows                                            |
+| Spaces Tabs         | 4\f&lt;space&gt;&lt;tab&gt;   | This file - convert this file - 4 spaces to tabs       |
+| Spaces Tabs         | 8\\&lt;space&gt;&lt;tab&gt;ip | Motion - convert this paragraph - 8 space to tab       |
+| Tabs Spaces         | 2\a&lt;tab&gt;&lt;space&gt;   | All args - convert all args - tabs to 2 spaces         |
+| Tabs Spaces         | 4\\&lt;tab&gt;&lt;space&gt;gg | Motion - from cursor to top of file - tabs to 4 spaces |
+| Space Surround      | 2\\&lt;space&gt;ss            | Line - wrap 2 empty lines around this one              |
+| Space Surround      | vee\\&lt;space&gt;s           | Visual - wrap space around 2 words                     |
+| Space Surround      | ^V3j4l\\&lt;space&gt;s        | Visual - wrap space around 5x4 block of characters     |
 
 ## Configuration
 
