@@ -62,10 +62,10 @@ CONFIGURATION                                      *delete-empty-lines-config*
 
 Each function is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
-e.g.  For EmptyLinesDelete,
+e.g.  For DeleteEmptyLines,
 >
-  let g:space_man_enable_empty_lines_delete          = 1
-  let g:space_man_create_mappings_empty_lines_delete = 1
+  let g:space_man_enable_delete_empty_lines          = 1
+  let g:space_man_create_mappings_delete_empty_lines = 1
 <
 
 LICENSE                                           *delete-empty-lines-license*

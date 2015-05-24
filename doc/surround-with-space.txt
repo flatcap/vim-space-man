@@ -18,9 +18,9 @@ The local mappings work on a Line, Motion or Visual region
 
 Plugin mappings:
 
-  Line    <plug>SpaceSurroundL
-  Motion  <plug>SpaceSurroundM
-  Visual  <plug>SpaceSurroundV
+  Line    <plug>SurroundWithSpaceL
+  Motion  <plug>SurroundWithSpaceM
+  Visual  <plug>SurroundWithSpaceV
 
 Default user mappings:
 
@@ -47,10 +47,10 @@ CONFIGURATION                                     *surround-with-space-config*
 
 'surround-with-space' is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
-e.g.  For EmptyLinesDelete,
+e.g.  For DeleteEmptyLines,
 >
-  let g:space_man_enable_empty_lines_delete          = 1
-  let g:space_man_create_mappings_empty_lines_delete = 1
+  let g:space_man_enable_surround_with_space          = 1
+  let g:space_man_create_mappings_surround_with_space = 1
 <
 
 LICENSE                                          *surround-with-space-license*

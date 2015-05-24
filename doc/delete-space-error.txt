@@ -20,13 +20,13 @@ The file mappings work on the entire File, all Args, Buffers or Windows.
 
 Plugin mappings:
 
-  Line    <plug>SpaceErrorL
-  Motion  <plug>SpaceErrorM
-  Visual  <plug>SpaceErrorV
-  Args    <plug>SpaceErrorA
-  Buffers <plug>SpaceErrorB
-  File    <plug>SpaceErrorF
-  Window  <plug>SpaceErrorW
+  Line    <plug>DeleteSpaceErrorL
+  Motion  <plug>DeleteSpaceErrorM
+  Visual  <plug>DeleteSpaceErrorV
+  Args    <plug>DeleteSpaceErrorA
+  Buffers <plug>DeleteSpaceErrorB
+  File    <plug>DeleteSpaceErrorF
+  Window  <plug>DeleteSpaceErrorW
 
 Default user mappings:
 
@@ -63,8 +63,8 @@ CONFIGURATION                                      *delete-space-error-config*
 'delete-space-error' is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
 >
-  let g:space_man_enable_space_error          = 1
-  let g:space_man_create_mappings_space_error = 1
+  let g:space_man_enable_delete_space_error          = 1
+  let g:space_man_create_mappings_delete_space_error = 1
 <
 
 LICENSE                                           *delete-space-error-license*

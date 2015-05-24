@@ -20,13 +20,13 @@ The file mappings work on the entire File, all Args, Buffers or Windows.
 
 Plugin mappings:
 
-  Line    <plug>SpaceLeadingL
-  Motion  <plug>SpaceLeadingM
-  Visual  <plug>SpaceLeadingV
-  Args    <plug>SpaceLeadingA
-  Buffers <plug>SpaceLeadingB
-  File    <plug>SpaceLeadingF
-  Window  <plug>SpaceLeadingW
+  Line    <plug>DeleteLeadingSpaceL
+  Motion  <plug>DeleteLeadingSpaceM
+  Visual  <plug>DeleteLeadingSpaceV
+  Args    <plug>DeleteLeadingSpaceA
+  Buffers <plug>DeleteLeadingSpaceB
+  File    <plug>DeleteLeadingSpaceF
+  Window  <plug>DeleteLeadingSpaceW
 
 Default user mappings:
 
@@ -63,8 +63,8 @@ CONFIGURATION                                    *delete-leading-space-config*
 'delete-leading-space' is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
 >
-  let g:space_man_enable_space_leading          = 1
-  let g:space_man_create_mappings_space_leading = 1
+  let g:space_man_enable_delete_leading_space          = 1
+  let g:space_man_create_mappings_delete_leading_space = 1
 <
 
 LICENSE                                         *delete-leading-space-license*

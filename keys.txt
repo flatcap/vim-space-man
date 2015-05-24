@@ -1,4 +1,4 @@
-DELETE_LEADING_SPACE - <space>l
+<Plug>DeleteLeadingSpace - <space>l
 	line		<leader><space>ll
 	visual		<leader><space>l
 	motion		<leader><space>l{motion}
@@ -7,7 +7,7 @@ DELETE_LEADING_SPACE - <space>l
 	buffer		<leader>b<space>l
 	args		<leader>a<space>l
 
-DELETE_TRAILING_SPACE - <space>t
+<Plug>DeleteTrailingSpace - <space>t
 	line		<leader><space>tt
 	visual		<leader><space>t
 	motion		<leader><space>t{motion}
@@ -16,7 +16,7 @@ DELETE_TRAILING_SPACE - <space>t
 	buffer		<leader>b<space>t
 	args		<leader>a<space>t
 
-DELETE_SPACE_ERROR - <space>e
+<Plug>DeleteSpaceError - <space>e
 	line		<leader><space>ee
 	visual		<leader><space>e
 	motion		<leader><space>e{motion}
@@ -25,7 +25,7 @@ DELETE_SPACE_ERROR - <space>e
 	buffer		<leader>b<space>e
 	args		<leader>a<space>e
 
-SQUEEZE_EMPTY_LINES - <enter>z
+<Plug>SqueezeEmptyLines - <enter>z
 	line		<leader><enter>zz
 	visual		<leader><enter>z
 	motion		<leader><enter>z{motion}
@@ -34,7 +34,7 @@ SQUEEZE_EMPTY_LINES - <enter>z
 	buffer		<leader>b<enter>z
 	args		<leader>a<enter>z
 
-DELETE_EMPTY_LINES - <enter>d
+<Plug>DeleteEmptyLines - <enter>d
 	line		<leader><enter>dd
 	visual		<leader><enter>d
 	motion		<leader><enter>d{motion}
@@ -43,19 +43,19 @@ DELETE_EMPTY_LINES - <enter>d
 	buffer		<leader>b<enter>d
 	args		<leader>a<enter>d
 
-DELETE_TOP_BLANK_LINES - <enter>gg
+<Plug>DeleteTopBlankLines - <enter>gg
 	file		<leader>f<enter>gg
 	window		<leader>w<enter>gg
 	buffer		<leader>b<enter>gg
 	args		<leader>a<enter>gg
 
-DELETE_BOTTOM_BLANK_LINES - <enter>G
+<Plug>DeleteBottomBlankLines - <enter>G
 	file		<leader>f<enter>G
 	window		<leader>w<enter>G
 	buffer		<leader>b<enter>G
 	args		<leader>a<enter>G
 
-CONVERT_TABS_TO_SPACES - <tab><space>
+<Plug>ConvertTabsToSpaces - <tab><space>
 	line		<count><leader><tab><space><space>
 	visual		<count><leader><tab><space>
 	motion		<count><leader><tab><space>{motion}
@@ -64,7 +64,7 @@ CONVERT_TABS_TO_SPACES - <tab><space>
 	buffer		<count><leader>b<tab><space>
 	args		<count><leader>a<tab><space>
 
-CONVERT_SPACES_TO_TABS - <space><tab>
+<Plug>ConvertSpacesToTabs - <space><tab>
 	line		<count><leader><space><tab><tab>
 	visual		<count><leader><space><tab>
 	motion		<count><leader><space><tab>{motion}
@@ -73,7 +73,7 @@ CONVERT_SPACES_TO_TABS - <space><tab>
 	buffer		<count><leader>b<space><tab>
 	args		<count><leader>a<space><tab>
 
-SURROUND_WITH_SPACE - <space>s
+<Plug>SurroundWithSpace - <space>s
 	line		<leader><space>ss
 	visual		<leader><space>s
 	motion		<leader><space>s{motion}

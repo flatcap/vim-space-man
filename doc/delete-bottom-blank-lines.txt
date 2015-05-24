@@ -19,10 +19,10 @@ The file mappings work on the entire File, all Args, Buffers or Windows.
 
 Plugin mappings:
 
-  Args    <plug>BlankLinesBottomA
-  Buffers <plug>BlankLinesBottomB
-  File    <plug>BlankLinesBottomF
-  Window  <plug>BlankLinesBottomW
+  Args    <plug>DeleteBottomBlankLinesA
+  Buffers <plug>DeleteBottomBlankLinesB
+  File    <plug>DeleteBottomBlankLinesF
+  Window  <plug>DeleteBottomBlankLinesW
 
 Default user mappings:
 
@@ -48,8 +48,8 @@ CONFIGURATION                               *delete-bottom-blank-lines-config*
 'delete-bottom-blank-lines' is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
 >
-  let g:space_man_enable_empty_lines_delete          = 1
-  let g:space_man_create_mappings_empty_lines_delete = 1
+  let g:space_man_enable_delete_bottom_blank_lines          = 1
+  let g:space_man_create_mappings_delete_bottom_blank_lines = 1
 <
 
 LICENSE                                    *delete-bottom-blank-lines-license*

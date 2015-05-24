@@ -1,4 +1,4 @@
-syntax match green   "^\C\u\i\+"
+syntax match green   "^<\S\+"
 syntax match yellow  "<leader>"
 syntax match green   "<space>"
 syntax match cyan    "<tab>"

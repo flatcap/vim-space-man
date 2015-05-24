@@ -20,13 +20,13 @@ The file mappings work on the entire File, all Args, all Buffers or all Windows.
 
 Plugin mappings:
 
-  Line    <plug>SpacesTabsL
-  Motion  <plug>SpacesTabsM
-  Visual  <plug>SpacesTabsV
-  Args    <plug>SpacesTabsA
-  Buffers <plug>SpacesTabsB
-  File    <plug>SpacesTabsF
-  Window  <plug>SpacesTabsW
+  Line    <plug>ConvertSpacesToTabsL
+  Motion  <plug>ConvertSpacesToTabsM
+  Visual  <plug>ConvertSpacesToTabsV
+  Args    <plug>ConvertSpacesToTabsA
+  Buffers <plug>ConvertSpacesToTabsB
+  File    <plug>ConvertSpacesToTabsF
+  Window  <plug>ConvertSpacesToTabsW
 
 Default user mappings:
 
@@ -63,8 +63,8 @@ CONFIGURATION                                  *convert-spaces-to-tabs-config*
 'convert-spaces-to-tabs' is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
 >
-  let g:space_man_enable_empty_lines_delete          = 1
-  let g:space_man_create_mappings_empty_lines_delete = 1
+  let g:space_man_enable_convert_spaces_to_tabs          = 1
+  let g:space_man_create_mappings_convert_spaces_to_tabs = 1
 <
 
 LICENSE                                       *convert-spaces-to-tabs-license*

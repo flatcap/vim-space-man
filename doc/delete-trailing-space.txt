@@ -21,13 +21,13 @@ The file mappings work on the entire File, all Args, Buffers or Windows.
 
 Plugin mappings:
 
-  Line    <plug>SpaceTrailingL
-  Motion  <plug>SpaceTrailingM
-  Visual  <plug>SpaceTrailingV
-  Args    <plug>SpaceTrailingA
-  Buffers <plug>SpaceTrailingB
-  File    <plug>SpaceTrailingF
-  Window  <plug>SpaceTrailingW
+  Line    <plug>DeleteTrailingSpaceL
+  Motion  <plug>DeleteTrailingSpaceM
+  Visual  <plug>DeleteTrailingSpaceV
+  Args    <plug>DeleteTrailingSpaceA
+  Buffers <plug>DeleteTrailingSpaceB
+  File    <plug>DeleteTrailingSpaceF
+  Window  <plug>DeleteTrailingSpaceW
 
 Default user mappings:
 
@@ -64,8 +64,8 @@ CONFIGURATION                                   *delete-trailing-space-config*
 Each function is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
 >
-  let g:space_man_enable_space_trailing          = 1
-  let g:space_man_create_mappings_space_trailing = 1
+  let g:space_man_enable_delete_trailing_space          = 1
+  let g:space_man_create_mappings_delete_trailing_space = 1
 <
 
 LICENSE                                        *delete-trailing-space-license*
