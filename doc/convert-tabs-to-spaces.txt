@@ -1,22 +1,17 @@
-*convert-tabs-to-spaces.txt*  Delete leading whitespace in a file
-
-Author:  Richard Russon (flatcap) <rich@flatcap.org>
-
-License: GPLv3 <http://fsf.org/>
-
-This plugin is only available if 'compatible' is not set.
-It is part of the |space-man| plugin.
+*convert-tabs-to-spaces.txt*  Convert tabs to spaces
 
 INTRODUCTION                                          *convert-tabs-to-spaces*
 
 'convert-tabs-to-spaces' replaces any leading tabs with spaces.
 The number of spaces is controlled by a repeat count.
 
+This plugin is part of the |space-man| plugin.
+
 MAPPINGS                                     *convert-tabs-to-spaces-mappings*
 
 'convert-tabs-to-spaces' creates a set of <Plug> mappings.
 The local mappings work on a Line, Motion or Visual region
-The file mappings work on the entire File, all Args, all Buffers or all Windows.
+The file mappings work on the entire File, all Args, Buffers or Windows.
 
 Plugin mappings:
 
@@ -43,39 +38,26 @@ EXAMPLES                                     *convert-tabs-to-spaces-examples*
 These examples assume the <Leader> is set to its default value of
 \ (backslash) and the plugin is using its default user mappings.
 
-  Type this...         | Work on | To convert tabs to spaces from
-  -------------------- | ------- | ------------------------------
-  \<tab><space>9j      | Motion  | 10 lines down
-  \<tab><space>G       | Motion  | cursor to end of file
-  \<tab><space>gg      | Motion  | cursor to top of file
-  \<tab><space>ip      | Motion  | this paragraph
+Prefix the command with the number of spaces you wish to turn one tab into.
 
-  V9j\<tab><space>     | Visual  | 10 lines down
-  \<tab><space><space> | Line    | This line only
+  Type this...          | Work on      | Replace tabs with
+  --------------------- | ------------ | -----------------
+  V9j4\<tab><space>     | 10 Lines     | 4 spaces
 
-  \a<tab><space>       | Args    | All lines in all arguments
-  \b<tab><space>       | Buffers | All lines in all buffers
-  \f<tab><space>       | File    | All lines in this file
-  \w<tab><space>       | windows | All lines in all windows
+  4\<tab><space><space> | This Line    | 4 spaces
+
+  4\a<tab><space>       | All Args     | 4 spaces
+  4\b<tab><space>       | All Buffers  | 4 spaces
+  8\f<tab><space>       | This File    | 8 spaces
+  8\w<tab><space>       | All windows  | 8 spaces
 
 CONFIGURATION                                  *convert-tabs-to-spaces-config*
 
-'convert-tabs-to-spaces' is controlled by two global variables which both default to 1 (true).
-The first to enable the function, the second to create default user mappings.
+'convert-tabs-to-spaces' is controlled by two global variables which both
+default to 1 (true).  The first enables the function; the second creates
+default user mappings.
 >
   let g:space_man_enable_convert_tabs_to_spaces          = 1
   let g:space_man_create_mappings_convert_tabs_to_spaces = 1
 <
-
-LICENSE                                       *convert-tabs-to-spaces-license*
-
-Copyright (c) Richard Russon (flatcap).
-Distributed under the GPLv3 <http://fsf.org/>
-
-ABOUT                                           *convert-tabs-to-spaces-about*
-
-Grab the latest version or report a bug on GitHub:
-
-http://github.com/flatcap/vim-space-man
-
  vim:tw=78:ts=2:sw=2:et:ft=help:norl:

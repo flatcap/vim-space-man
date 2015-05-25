@@ -1,17 +1,11 @@
-*delete-trailing-space.txt*  Delete trailing whitespace in a file
-
-Author:  Richard Russon (flatcap) <rich@flatcap.org>
-
-License: GPLv3 <http://fsf.org/>
-
-This plugin is only available if 'compatible' is not set.
+*delete-trailing-space.txt*  Delete trailing whitespace
 
 INTRODUCTION                                           *delete-trailing-space*
 
 'delete-trailing-space' will remove any whitespace from the beginning of lines.
 Here, whitespace means space, tab or carriage return characters.
 
-It is part of the |space-man| plugin.
+This plugin is part of the |space-man| plugin.
 
 MAPPINGS                                      *delete-trailing-space-mappings*
 
@@ -47,9 +41,9 @@ These examples assume the <Leader> is set to its default value of
   Type this... | Work on | To remove trailing space from
   ------------ | ------- | -----------------------------
   \<space>t9j  | Motion  | 10 lines down
-  \<space>tG   | Motion  | cursor to end of file
-  \<space>tgg  | Motion  | cursor to top of file
-  \<space>tip  | Motion  | this paragraph
+  \<space>tG   | Motion  | Cursor to end of file
+  \<space>tgg  | Motion  | Cursor to top of file
+  \<space>tip  | Motion  | This paragraph
 
   V9j\<space>t | Visual  | 10 lines down
   \<space>tt   | Line    | This line only
@@ -61,22 +55,11 @@ These examples assume the <Leader> is set to its default value of
 
 CONFIGURATION                                   *delete-trailing-space-config*
 
-Each function is controlled by two global variables which both default to 1 (true).
-The first to enable the function, the second to create default user mappings.
+'delete-trailing-space' is controlled by two global variables which both
+default to 1 (true).  The first enables the function; the second creates
+default user mappings.
 >
   let g:space_man_enable_delete_trailing_space          = 1
   let g:space_man_create_mappings_delete_trailing_space = 1
 <
-
-LICENSE                                        *delete-trailing-space-license*
-
-Copyright (c) Richard Russon (flatcap).
-Distributed under the GPLv3 <http://fsf.org/>
-
-ABOUT                                            *delete-trailing-space-about*
-
-Grab the latest version or report a bug on GitHub:
-
-  http://github.com/flatcap/vim-space-man
-
  vim:tw=78:ts=2:sw=2:et:ft=help:norl:

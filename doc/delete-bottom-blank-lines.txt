@@ -1,16 +1,11 @@
 *delete-bottom-blank-lines.txt*  Delete blank lines from the bottom of a file
 
-Author:  Richard Russon (flatcap) <rich@flatcap.org>
-
-License: GPLv3 <http://fsf.org/>
-
-This plugin is only available if 'compatible' is not set.
-It is part of the |space-man| plugin.
-
 INTRODUCTION                                       *delete-bottom-blank-lines*
 
 'delete-bottom-blank-lines' deletes any blank lines from the bottom of a file.
 That is lines with zero characters, or lines containing only spaces and tabs.
+
+This plugin is part of the |space-man| plugin.
 
 MAPPINGS                                  *delete-bottom-blank-lines-mappings*
 
@@ -45,22 +40,11 @@ These examples assume the <Leader> is set to its default value of
 
 CONFIGURATION                               *delete-bottom-blank-lines-config*
 
-'delete-bottom-blank-lines' is controlled by two global variables which both default to 1 (true).
-The first to enable the function, the second to create default user mappings.
+'delete-bottom-blank-lines' is controlled by two global variables which both
+default to 1 (true).  The first enables the function; the second creates
+default user mappings.
 >
   let g:space_man_enable_delete_bottom_blank_lines          = 1
   let g:space_man_create_mappings_delete_bottom_blank_lines = 1
 <
-
-LICENSE                                    *delete-bottom-blank-lines-license*
-
-Copyright (c) Richard Russon (flatcap).
-Distributed under the GPLv3 <http://fsf.org/>
-
-ABOUT                                        *delete-bottom-blank-lines-about*
-
-Grab the latest version or report a bug on GitHub:
-
-http://github.com/flatcap/vim-space-man
-
  vim:tw=78:ts=2:sw=2:et:ft=help:norl:

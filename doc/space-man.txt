@@ -5,7 +5,7 @@ License: GPLv3 <http://fsf.org/>
 
 This plugin is only available if 'compatible' is not set.
 
-INTRODUCTION                                              *space-man*
+INTRODUCTION                                                       *space-man*
 
 SpaceMan introduces ten functions for maniputing whitespace in a file.
 
@@ -35,26 +35,26 @@ List of all <Plug> mappings:
 
   Line               | Motion             | Visual
   ------------------ | ------------------ | ------------------
-  EmptyLinesDeleteL  | EmptyLinesDeleteM  | EmptyLinesDeleteV
-  EmptyLinesSqueezeL | EmptyLinesSqueezeM | EmptyLinesSqueezeV
-  SpaceErrorL        | SpaceErrorM        | SpaceErrorV
-  SpaceLeadingL      | SpaceLeadingM      | SpaceLeadingV
-  SpacesTabsL        | SpacesTabsM        | SpacesTabsV
-  SpaceTrailingL     | SpaceTrailingM     | SpaceTrailingV
-  TabsSpacesL        | TabsSpacesM        | TabsSpacesV
-  SpaceSurroundL     | SpaceSurroundM     | SpaceSurroundV
+  DeleteEmptyLinesL  | DeleteEmptyLinesM  | DeleteEmptyLinesV
+  SqueezeEmptyLinesL | SqueezeEmptyLinesM | SqueezeEmptyLinesV
+  DeleteSpaceErrorL        | DeleteSpaceErrorM        | DeleteSpaceErrorV
+  DeleteLeadingSpaceL      | DeleteLeadingSpaceM      | DeleteLeadingSpaceV
+  ConvertSpacesToTabsL        | ConvertSpacesToTabsM        | ConvertSpacesToTabsV
+  DeleteTrailingSpaceL     | DeleteTrailingSpaceM     | DeleteTrailingSpaceV
+  ConvertTabsToSpacesL        | ConvertTabsToSpacesM        | ConvertTabsToSpacesV
+  SurroundWithSpaceL     | SurroundWithSpaceM     | SurroundWithSpaceV
 
   Args               | Buffers            | File               | Window
   ------------------ | ------------------ | ------------------ | ------------------
-  BlankLinesTopA     | BlankLinesTopB     | BlankLinesTopF     | BlankLinesTopW
-  BlankLinesBottomA  | BlankLinesBottomB  | BlankLinesBottomF  | BlankLinesBottomW
-  EmptyLinesDeleteA  | EmptyLinesDeleteB  | EmptyLinesDeleteF  | EmptyLinesDeleteW
-  EmptyLinesSqueezeA | EmptyLinesSqueezeB | EmptyLinesSqueezeF | EmptyLinesSqueezeW
-  SpaceErrorA        | SpaceErrorB        | SpaceErrorF        | SpaceErrorW
-  SpaceLeadingA      | SpaceLeadingB      | SpaceLeadingF      | SpaceLeadingW
-  SpacesTabsA        | SpacesTabsB        | SpacesTabsF        | SpacesTabsW
-  SpaceTrailingA     | SpaceTrailingB     | SpaceTrailingF     | SpaceTrailingW
-  TabsSpacesA        | TabsSpacesB        | TabsSpacesF        | TabsSpacesW
+  DeleteTopBlankLinesA     | DeleteTopBlankLinesB     | DeleteTopBlankLinesF     | DeleteTopBlankLinesW
+  DeleteBottomBlankLinesA  | DeleteBottomBlankLinesB  | DeleteBottomBlankLinesF  | DeleteBottomBlankLinesW
+  DeleteEmptyLinesA  | DeleteEmptyLinesB  | DeleteEmptyLinesF  | DeleteEmptyLinesW
+  SqueezeEmptyLinesA | SqueezeEmptyLinesB | SqueezeEmptyLinesF | SqueezeEmptyLinesW
+  DeleteSpaceErrorA        | DeleteSpaceErrorB        | DeleteSpaceErrorF        | DeleteSpaceErrorW
+  DeleteLeadingSpaceA      | DeleteLeadingSpaceB      | DeleteLeadingSpaceF      | DeleteLeadingSpaceW
+  ConvertSpacesToTabsA        | ConvertSpacesToTabsB        | ConvertSpacesToTabsF        | ConvertSpacesToTabsW
+  DeleteTrailingSpaceA     | DeleteTrailingSpaceB     | DeleteTrailingSpaceF     | DeleteTrailingSpaceW
+  ConvertTabsToSpacesA        | ConvertTabsToSpacesB        | ConvertTabsToSpacesF        | ConvertTabsToSpacesW
 
 The keyboard mappings begin with <Leader>
 The args mappings begin with <Leader>a
@@ -114,7 +114,7 @@ and the plugin is using its default user mappings.
   Space Surround      | vee\<space>s     | Visual - wrap space around 2 words
   Space Surround      | ^V3j4l\<space>s  | Visual - wrap space around 5x4 block of characters
 
-CONFIGURATION                                             *space-man-config*
+CONFIGURATION                                               *space-man-config*
 
 To completely disable this plugin, add the following to your `.vimrc`
 >
@@ -123,46 +123,46 @@ To completely disable this plugin, add the following to your `.vimrc`
 
 Each function is controlled by two global variables which both default to 1 (true).
 The first to enable the function, the second to create default user mappings.
-e.g.  For EmptyLinesDelete,
+e.g.  For DeleteEmptyLines,
 >
-  let g:space_man_enable_empty_lines_delete          = 1
-  let g:space_man_create_mappings_empty_lines_delete = 1
+  let g:space_man_enable_delete_empty_lines          = 1
+  let g:space_man_create_mappings_delete_empty_lines = 1
 <
 
 Here's the full list
 
   Function            | Enable
   ------------------- | --------------------------------------
-  Blank Lines Top     | g:space_man_enable_blank_lines_top
-  Blank Lines Bottom  | g:space_man_enable_blank_lines_bottom
-  Empty Lines Delete  | g:space_man_enable_empty_lines_delete
-  Empty Lines Squeeze | g:space_man_enable_empty_lines_squeeze
-  Space Error         | g:space_man_enable_space_error
-  Space Leading       | g:space_man_enable_space_leading
-  Space Trailing      | g:space_man_enable_space_trailing
-  Spaces Tabs         | g:space_man_enable_spaces_tabs
-  Tabs Spaces         | g:space_man_enable_tabs_spaces
-  Space Surround      | g:space_man_enable_space_surround
+  Blank Lines Top     | g:space_man_enable_delete_top_blank_lines
+  Blank Lines Bottom  | g:space_man_enable_delete_bottom_blank_lines
+  Empty Lines Delete  | g:space_man_enable_delete_empty_lines
+  Empty Lines Squeeze | g:space_man_enable_squeeze_empty_lines
+  Space Error         | g:space_man_enable_delete_space_error
+  Space Leading       | g:space_man_enable_delete_leading_space
+  Space Trailing      | g:space_man_enable_delete_trailing_space
+  Spaces Tabs         | g:space_man_enable_convert_spaces_to_tabs
+  Tabs Spaces         | g:space_man_enable_convert_tabs_to_spaces
+  Space Surround      | g:space_man_enable_surround_with_space
 
   Function            | User mappings
   ------------------- | -----------------------------------------------
-  Blank Lines Top     | g:space_man_create_mappings_blank_lines_top
-  Blank Lines Bottom  | g:space_man_create_mappings_blank_lines_bottom
-  Empty Lines Delete  | g:space_man_create_mappings_empty_lines_delete
-  Empty Lines Squeeze | g:space_man_create_mappings_empty_lines_squeeze
-  Space Error         | g:space_man_create_mappings_space_error
-  Space Leading       | g:space_man_create_mappings_space_leading
-  Space Trailing      | g:space_man_create_mappings_space_trailing
-  Spaces Tabs         | g:space_man_create_mappings_spaces_tabs
-  Tabs Spaces         | g:space_man_create_mappings_tabs_spaces
-  Space Surround      | g:space_man_create_mappings_space_surround
+  Blank Lines Top     | g:space_man_create_mappings_delete_top_blank_lines
+  Blank Lines Bottom  | g:space_man_create_mappings_delete_bottom_blank_lines
+  Empty Lines Delete  | g:space_man_create_mappings_delete_empty_lines
+  Empty Lines Squeeze | g:space_man_create_mappings_squeeze_empty_lines
+  Space Error         | g:space_man_create_mappings_delete_space_error
+  Space Leading       | g:space_man_create_mappings_delete_leading_space
+  Space Trailing      | g:space_man_create_mappings_delete_trailing_space
+  Spaces Tabs         | g:space_man_create_mappings_convert_spaces_to_tabs
+  Tabs Spaces         | g:space_man_create_mappings_convert_tabs_to_spaces
+  Space Surround      | g:space_man_create_mappings_surround_with_space
 
-LICENSE                                                   *space-man-license*
+LICENSE                                                    *space-man-license*
 
 Copyright (c) Richard Russon (flatcap).
 Distributed under the GPLv3 <http://fsf.org/>
 
-ABOUT                                           	        *space-man-about*
+ABOUT                                                        *space-man-about*
 
 Grab the latest version or report a bug on GitHub:
 

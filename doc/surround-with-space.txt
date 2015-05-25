@@ -1,15 +1,10 @@
 *surround-with-space.txt*  Surround words, lines and blocks with spaces
 
-Author:  Richard Russon (flatcap) <rich@flatcap.org>
-
-License: GPLv3 <http://fsf.org/>
-
-This plugin is only available if 'compatible' is not set.
-It is part of the |space-man| plugin.
-
 INTRODUCTION                                             *surround-with-space*
 
 'surround-with-space' surrounds words, lines or blocks with spaces
+
+This plugin is part of the |space-man| plugin.
 
 MAPPINGS                                        *surround-with-space-mappings*
 
@@ -33,35 +28,26 @@ EXAMPLES                                        *surround-with-space-examples*
 These examples assume the <Leader> is set to its default value of
 \ (backslash) and the plugin is using its default user mappings.
 
-  Type this...       | Work on | To convert spaces to tabs from
-  ------------------ | ------- | ------------------------------
-  \<space><tab>9j    | Motion  | 10 lines down
-  \<space><tab>G     | Motion  | cursor to end of file
-  \<space><tab>gg    | Motion  | cursor to top of file
-  \<space><tab>ip    | Motion  | this paragraph
+  Type this...    | Work on | To surround   | With
+  --------------- | ------- | ------------- | --------------
+  \<space>s3j     | Motion  | Four lines    | One blank line
+  \<space>sip     | Motion  | Paragraph     | One blank line
 
-  V9j\<space><tab>   | Visual  | 10 lines down
-  \<space><tab><tab> | Line    | This line only
+  Vj\<space>s     | Visual  | Two lines     | One blank line
+  Ve\<space>s     | Visual  | One word      | One space
+  Ve3\<space>s    | Visual  | One word      | Three spaces
+  ^V4l3j\<space>s | Visual  | Block of Text | One space
+
+  \<space>ss      | Line    | One line      | One blank line
+  3\<space>ss     | Line    | One line      | Three blank lines
 
 CONFIGURATION                                     *surround-with-space-config*
 
-'surround-with-space' is controlled by two global variables which both default to 1 (true).
-The first to enable the function, the second to create default user mappings.
-e.g.  For DeleteEmptyLines,
+'surround-with-space' is controlled by two global variables which both default
+to 1 (true).  The first enables the function; the second creates default user
+mappings.
 >
   let g:space_man_enable_surround_with_space          = 1
   let g:space_man_create_mappings_surround_with_space = 1
 <
-
-LICENSE                                          *surround-with-space-license*
-
-Copyright (c) Richard Russon (flatcap).
-Distributed under the GPLv3 <http://fsf.org/>
-
-ABOUT                                              *surround-with-space-about*
-
-Grab the latest version or report a bug on GitHub:
-
-http://github.com/flatcap/vim-space-man
-
  vim:tw=78:ts=2:sw=2:et:ft=help:norl:

@@ -1,22 +1,17 @@
-*squeeze-empty-lines.txt*  Remove duplicate blank lines in a file
-
-Author:  Richard Russon (flatcap) <rich@flatcap.org>
-
-License: GPLv3 <http://fsf.org/>
-
-This plugin is only available if 'compatible' is not set.
-It is part of the |space-man| plugin.
+*squeeze-empty-lines.txt*  Remove duplicate blank lines
 
 INTRODUCTION                                             *squeeze-empty-lines*
 
 'squeeze-empty-lines' will remove any duplicate blank lines in a file.
 Lines containing only space or tab characters are considered empty.
 
+This plugin is part of the |space-man| plugin.
+
 MAPPINGS                                        *squeeze-empty-lines-mappings*
 
 'squeeze-empty-lines' creates a set of <Plug> mappings.
 The local mappings work on a Line, Motion or Visual region
-The file mappings work on the entire File, all Args, all Buffers or all Windows.
+The file mappings work on the entire File, all Args, Buffers or Windows.
 
 Plugin mappings:
 
@@ -44,11 +39,11 @@ These examples assume the <Leader> is set to its default value of
 \ (backslash) and the plugin is using its default user mappings.
 
   Type this... | Work on | To squeeze empty lines from
-  ------------ | ------- | -----------------------------
+  ------------ | ------- | ---------------------------
   \<enter>z9j  | Motion  | 10 lines down
-  \<enter>zG   | Motion  | cursor to end of file
-  \<enter>zgg  | Motion  | cursor to top of file
-  \<enter>zip  | Motion  | this paragraph
+  \<enter>zG   | Motion  | Cursor to end of file
+  \<enter>zgg  | Motion  | Cursor to top of file
+  \<enter>zip  | Motion  | This paragraph
 
   V9j\<enter>z | Visual  | 10 lines down
   \<enter>zz   | Line    | This line only
@@ -60,22 +55,11 @@ These examples assume the <Leader> is set to its default value of
 
 CONFIGURATION                                     *squeeze-empty-lines-config*
 
-'squeeze-empty-lines' is controlled by two global variables which both default to 1 (true).
-The first to enable the function, the second to create default user mappings.
+'squeeze-empty-lines' is controlled by two global variables which both default
+to 1 (true).  The first enables the function; the second creates default user
+mappings.
 >
   let g:space_man_enable_squeeze_empty_lines          = 1
   let g:space_man_create_mappings_squeeze_empty_lines = 1
 <
-
-LICENSE                                          *squeeze-empty-lines-license*
-
-Copyright (c) Richard Russon (flatcap).
-Distributed under the GPLv3 <http://fsf.org/>
-
-ABOUT                                              *squeeze-empty-lines-about*
-
-Grab the latest version or report a bug on GitHub:
-
-http://github.com/flatcap/vim-space-man
-
  vim:tw=78:ts=2:sw=2:et:ft=help:norl:
