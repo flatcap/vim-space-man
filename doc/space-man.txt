@@ -9,110 +9,35 @@ INTRODUCTION                                                       *space-man*
 
 SpaceMan introduces ten functions for maniputing whitespace in a file.
 
-  Function            | Description
-  ------------------- | -------------------------------------------------------
-  Blank Lines Top     | Remove empty lines at the beginning of the file
-  Blank Lines Bottom  | Remove empty lines at the end of the file
-  Empty Lines Delete  | Delete all empty lines
-  Empty Lines Squeeze | Merge adjacent empty lines
-  Space Error         | Remove any space characters that precede tab characters
-  Space Leading       | Remove any whitespace at the beginning of a line
-  Space Trailing      | Remove any whitespace at the end of a line
-  Spaces Tabs         | Convert leading spaces to tabs
-  Tabs Spaces         | Convert leading tabs to spaces
-  Space Surround      | Add whitespace around a word, line or block
-
-Whitespace: Space, Tab or Carriage Return
-Empty line: No characters, or only whitespace
+  Function                  | Description
+  ------------------------- | ------------------------------------------------
+  |delete_leading_space|      | Remove any whitespace at the beginning of a line
+  |delete_trailing_space|     | Remove any whitespace at the end of a line
+  |delete_space_error|        | Remove any space chars that precede tab chars
+  |delete_empty_lines|        | Delete all empty lines
+  |squeeze_empty_lines|       | Merge adjacent empty lines
+  |delete_top_blank_lines|    | Remove empty lines at the beginning of the file
+  |delete_bottom_blank_lines| | Remove empty lines at the end of the file
+  |convert_tabs_to_spaces|    | Convert leading tabs to spaces
+  |convert_spaces_to_tabs|    | Convert leading spaces to tabs
+  |surround_with_space|       | Add whitespace around a word, line or block
 
 MAPPINGS                                                  *space-man-mappings*
 
-Each function creates a set of <Plug> mappings.
-The local mappings work on a Line, Motion or Visual region
-The file mappings work on the entire File, all Args, all Buffers or all Windows.
+Each function creates a set of <Plug> mappings and a set of user key mappings.
 
-List of all <Plug> mappings:
-
-  Line               | Motion             | Visual
-  ------------------ | ------------------ | ------------------
-  DeleteEmptyLinesL  | DeleteEmptyLinesM  | DeleteEmptyLinesV
-  SqueezeEmptyLinesL | SqueezeEmptyLinesM | SqueezeEmptyLinesV
-  DeleteSpaceErrorL        | DeleteSpaceErrorM        | DeleteSpaceErrorV
-  DeleteLeadingSpaceL      | DeleteLeadingSpaceM      | DeleteLeadingSpaceV
-  ConvertSpacesToTabsL        | ConvertSpacesToTabsM        | ConvertSpacesToTabsV
-  DeleteTrailingSpaceL     | DeleteTrailingSpaceM     | DeleteTrailingSpaceV
-  ConvertTabsToSpacesL        | ConvertTabsToSpacesM        | ConvertTabsToSpacesV
-  SurroundWithSpaceL     | SurroundWithSpaceM     | SurroundWithSpaceV
-
-  Args               | Buffers            | File               | Window
-  ------------------ | ------------------ | ------------------ | ------------------
-  DeleteTopBlankLinesA     | DeleteTopBlankLinesB     | DeleteTopBlankLinesF     | DeleteTopBlankLinesW
-  DeleteBottomBlankLinesA  | DeleteBottomBlankLinesB  | DeleteBottomBlankLinesF  | DeleteBottomBlankLinesW
-  DeleteEmptyLinesA  | DeleteEmptyLinesB  | DeleteEmptyLinesF  | DeleteEmptyLinesW
-  SqueezeEmptyLinesA | SqueezeEmptyLinesB | SqueezeEmptyLinesF | SqueezeEmptyLinesW
-  DeleteSpaceErrorA        | DeleteSpaceErrorB        | DeleteSpaceErrorF        | DeleteSpaceErrorW
-  DeleteLeadingSpaceA      | DeleteLeadingSpaceB      | DeleteLeadingSpaceF      | DeleteLeadingSpaceW
-  ConvertSpacesToTabsA        | ConvertSpacesToTabsB        | ConvertSpacesToTabsF        | ConvertSpacesToTabsW
-  DeleteTrailingSpaceA     | DeleteTrailingSpaceB     | DeleteTrailingSpaceF     | DeleteTrailingSpaceW
-  ConvertTabsToSpacesA        | ConvertTabsToSpacesB        | ConvertTabsToSpacesF        | ConvertTabsToSpacesW
-
-The keyboard mappings begin with <Leader>
-The args mappings begin with <Leader>a
-The buffer mappings begin with <Leader>b
-The file mappings begin with <Leader>f
-The window mappings begin with <Leader>w
-
-  Function            | Line                | Motion       | Visual
-  ------------------- | ------------------- | ------------ | ------------
-  Empty Lines Delete  | <enter>dd           | <enter>d     | <enter>d
-  Empty Lines Squeeze | <enter>zz           | <enter>z     | <enter>z
-  Space Error         | <space>ee           | <space>e     | <space>e
-  Space Leading       | <space>ll           | <space>l     | <space>l
-  Space Trailing      | <space>tt           | <space>t     | <space>t
-  Spaces Tabs         | <space><tab><tab>   | <space><tab> | <space><tab>
-  Tabs Spaces         | <tab><space><space> | <tab><space> | <tab><space>
-  Space Surround      | <space>ss           | <space>s     | <space>s
-
-  Function            | Args          | Buffers       | File          | Window
-  ------------------- | ------------- | ------------- | ------------- | -------------
-  Blank Lines Top     | a<enter>gg    | b<enter>gg    | f<enter>gg    | w<enter>gg
-  Blank Lines Bottom  | a<enter>G     | b<enter>G     | f<enter>G     | w<enter>G
-  Empty Lines Delete  | a<enter>d     | b<enter>d     | f<enter>d     | w<enter>d
-  Empty Lines Squeeze | a<enter>z     | b<enter>z     | f<enter>z     | w<enter>z
-  Space Error         | a<space>e     | b<space>e     | f<space>e     | w<space>e
-  Space Leading       | a<space>l     | b<space>l     | f<space>l     | w<space>l
-  Space Trailing      | a<space>t     | b<space>t     | f<space>t     | w<space>t
-  Spaces Tabs         | a<space><tab> | b<space><tab> | f<space><tab> | w<space><tab>
-  Tabs Spaces         | a<tab><space> | b<tab><space> | f<tab><space> | w<tab><space>
-
-EXAMPLES                                                  *space-man-examples*
-
-These examples assume the <Leader> is set to its default value of \ (backslash)
-and the plugin is using its default user mappings.
-
-  Function            | Type this...     | Acts on
-  ------------------- | ---------------- | ------------------------------------------------------
-  Blank Lines Top     | \f<enter>gg      | This file
-  Blank Lines Top     | \w<enter>gg      | All windows
-  Blank Lines Bottom  | \b<enter>G       | All buffers
-  Blank Lines Bottom  | \a<anter>G       | All args
-  Empty Lines Delete  | V10j\<enter>d    | Visual - 10 lines down
-  Empty Lines Delete  | \<enter>d10j     | Motion - 10 lines down
-  Empty Lines Squeeze | \<enter>zG       | Motion - from cursor to end of file
-  Empty Lines Squeeze | \f<enter>z       | This file
-  Space Error         | \<space>ee       | Line
-  Space Error         | \a<space>e       | All args
-  Space Leading       | \b<space>l       | All buffers
-  Space Leading       | \<space>lip      | Motion - this paragraph
-  Space Trailing      | \<space>tt       | Line
-  Space Trailing      | \w<space>t       | All windows
-  Spaces Tabs         | 4\f<space><tab>  | This file - convert this file - 4 spaces to tabs
-  Spaces Tabs         | 8\<space><tab>ip | Motion - convert this paragraph - 8 space to tab
-  Tabs Spaces         | 2\a<tab><space>  | All args - convert all args - tabs to 2 spaces
-  Tabs Spaces         | 4\<tab><space>gg | Motion - from cursor to top of file - tabs to 4 spaces
-  Space Surround      | 2\<space>ss      | Line - wrap 2 empty lines around this one
-  Space Surround      | vee\<space>s     | Visual - wrap space around 2 words
-  Space Surround      | ^V3j4l\<space>s  | Visual - wrap space around 5x4 block of characters
+  Function                  | <Plug> prefix          | User key mapping          
+  ------------------------- | -----------------------| --------------------- 
+  |delete_leading_space|      | DeleteLeadingSpace     | <leader><space>l      
+  |delete_trailing_space|     | DeleteTrailingSpace    | <leader><space>t      
+  |delete_space_error|        | DeleteSpaceError       | <leader><space>e      
+  |delete_empty_lines|        | DeleteEmptyLines       | <leader><enter>d      
+  |squeeze_empty_lines|       | SqueezeEmptyLines      | <leader><enter>z      
+  |delete_top_blank_lines|    | DeleteTopBlankLines    | <leader><enter>gg     
+  |delete_bottom_blank_lines| | DeleteBottomBlankLines | <leader><enter>G      
+  |convert_tabs_to_spaces|    | ConvertTabsToSpaces    | <leader><tab><space>  
+  |convert_spaces_to_tabs|    | ConvertSpacesToTabs    | <leader><space><tab>  
+  |surround_with_space|       | SurroundWithSpace      | <leader><space>s      
 
 CONFIGURATION                                               *space-man-config*
 
@@ -120,42 +45,8 @@ To completely disable this plugin, add the following to your `.vimrc`
 >
   let g:loaded_space_man = 1
 <
-
-Each function is controlled by two global variables which both default to 1 (true).
-The first to enable the function, the second to create default user mappings.
-e.g.  For DeleteEmptyLines,
->
-  let g:space_man_enable_delete_empty_lines          = 1
-  let g:space_man_create_mappings_delete_empty_lines = 1
-<
-
-Here's the full list
-
-  Function            | Enable
-  ------------------- | --------------------------------------
-  Blank Lines Top     | g:space_man_enable_delete_top_blank_lines
-  Blank Lines Bottom  | g:space_man_enable_delete_bottom_blank_lines
-  Empty Lines Delete  | g:space_man_enable_delete_empty_lines
-  Empty Lines Squeeze | g:space_man_enable_squeeze_empty_lines
-  Space Error         | g:space_man_enable_delete_space_error
-  Space Leading       | g:space_man_enable_delete_leading_space
-  Space Trailing      | g:space_man_enable_delete_trailing_space
-  Spaces Tabs         | g:space_man_enable_convert_spaces_to_tabs
-  Tabs Spaces         | g:space_man_enable_convert_tabs_to_spaces
-  Space Surround      | g:space_man_enable_surround_with_space
-
-  Function            | User mappings
-  ------------------- | -----------------------------------------------
-  Blank Lines Top     | g:space_man_create_mappings_delete_top_blank_lines
-  Blank Lines Bottom  | g:space_man_create_mappings_delete_bottom_blank_lines
-  Empty Lines Delete  | g:space_man_create_mappings_delete_empty_lines
-  Empty Lines Squeeze | g:space_man_create_mappings_squeeze_empty_lines
-  Space Error         | g:space_man_create_mappings_delete_space_error
-  Space Leading       | g:space_man_create_mappings_delete_leading_space
-  Space Trailing      | g:space_man_create_mappings_delete_trailing_space
-  Spaces Tabs         | g:space_man_create_mappings_convert_spaces_to_tabs
-  Tabs Spaces         | g:space_man_create_mappings_convert_tabs_to_spaces
-  Space Surround      | g:space_man_create_mappings_surround_with_space
+Alternatively, each function can be disabled individually.
+See the function's page for details.
 
 LICENSE                                                    *space-man-license*
 
