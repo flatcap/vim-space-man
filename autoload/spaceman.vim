@@ -26,7 +26,7 @@ function! spaceman#DeleteEmptyLines (...)
 		let cmd = a:1 . ',' . a:2
 	endif
 
-	let cmd .= 's/\v^\s*$\n//e'
+	let cmd .= 's/\v(\n^\s*$|^\s*$\n)//e'
 	execute cmd
 endfunction
 
