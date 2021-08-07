@@ -4,7 +4,7 @@ SpaceMan manages whitespace in a file
 
 ## Introduction
 
-SpaceMan introduces ten functions for maniputing whitespace in a file.
+SpaceMan introduces ten functions for manipulating whitespace in a file.
 
 Function                  | Description
 ------------------------- | ------------------------------------------------
